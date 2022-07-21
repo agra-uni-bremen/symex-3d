@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trace version="4.0">
+
+################################
+
+<symex run_id="0">
+<run start="0">
+<step pc="10074" step="0"><jump target="10108" link="ra   (x1)" link-address="10078" beh="none" ></jump>
+</step>
+<step pc="10108" step="1"><instruction opcode="ADDI" rd="sp   (x2) C" rs1="sp   (x2) C" imm="4294967264" beh="none" ></instruction>
+</step>
+<step pc="1010c" step="2"><store opcode="SW" rs1="sp   (x2) C" imm="28" rs2="ra   (x1) C" target="0x55cda58644c0" beh="none" ></store>
+</step>
+<step pc="10110" step="3"><store opcode="SW" rs1="sp   (x2) C" imm="24" rs2="s0/fp(x8) C" target="0x55cda5885680" beh="none" ></store>
+</step>
+<step pc="10114" step="4"><instruction opcode="ADDI" rd="s0/fp(x8) C" rs1="sp   (x2) C" imm="32" beh="none" ></instruction>
+</step>
+<step pc="10118" step="5"><instruction opcode="ADDI" rd="a1  (x11) C" rs1="zero (x0) C" imm="42" beh="none" ></instruction>
+</step>
+<step pc="1011c" step="6"><instruction opcode="ADDI" rd="a0  (x10) C" rs1="zero (x0) C" imm="23" beh="none" ></instruction>
+</step>
+<step pc="10120" step="7"><jump target="10164" link="ra   (x1)" link-address="10124" beh="none" ></jump>
+</step>
+<step pc="10164" step="8"><instruction opcode="ADDI" rd="sp   (x2) C" rs1="sp   (x2) C" imm="4294967264" beh="none" ></instruction>
+</step>
+<step pc="10168" step="9"><store opcode="SW" rs1="sp   (x2) C" imm="28" rs2="s0/fp(x8) C" target="0x55cda5864880" beh="none" ></store>
+</step>
+<step pc="1016c" step="10"><instruction opcode="ADDI" rd="s0/fp(x8) C" rs1="sp   (x2) C" imm="32" beh="none" ></instruction>
+</step>
+<step pc="10170" step="11"><store opcode="SW" rs1="s0/fp(x8) C" imm="4294967276" rs2="a0  (x10) C" target="0x55cda58867e0" beh="none" ></store>
+</step>
+<step pc="10174" step="12"><store opcode="SW" rs1="s0/fp(x8) C" imm="4294967272" rs2="a1  (x11) C" target="0x55cda5886bc0" beh="none" ></store>
+</step>
+<step pc="10178" step="13"><instruction opcode="LUI" rd="a5  (x15) C" imm="33685504" beh="none" ></instruction></step>
+<step pc="1017c" step="14"><instruction opcode="ADDI" rd="a5  (x15) C" rs1="a5  (x15) C" imm="256" beh="none" ></instruction>
+</step>
+<step pc="10180" step="15"><load opcode="LW" rs1="s0/fp(x8) C" imm="4294967276" rd="a4  (x14) C" target="0x55cda5886e60" beh="none" ></load>
+</step>
+<step pc="10184" step="16"><store opcode="SW" rs1="a5  (x15) C" imm="0" rs2="a4  (x14) C" target="0x55cda5864ce0" beh="none" ></store>
+</step>
+<step pc="10188" step="17"><instruction opcode="LUI" rd="a5  (x15) C" imm="33685504" beh="none" ></instruction></step>
+<step pc="1018c" step="18"><instruction opcode="ADDI" rd="a5  (x15) C" rs1="a5  (x15) C" imm="260" beh="none" ></instruction>
+</step>
+<step pc="10190" step="19"><load opcode="LW" rs1="s0/fp(x8) C" imm="4294967272" rd="a4  (x14) C" target="0x55cda58867e0" beh="none" ></load>
+</step>
+<step pc="10194" step="20"><store opcode="SW" rs1="a5  (x15) C" imm="0" rs2="a4  (x14) C" target="0x55cda5886f00" beh="none" ></store>
+</step>
+<step pc="10198" step="21"><instruction opcode="ADDI" rd="zero (x0) C" rs1="zero (x0) C" imm="0" beh="none" ></instruction>
+</step>
+<step pc="1019c" step="22"><load opcode="LW" rs1="sp   (x2) C" imm="28" rd="s0/fp(x8) C" target="0x55cda5864c40" beh="none" ></load>
+</step>
+<step pc="101a0" step="23"><instruction opcode="ADDI" rd="sp   (x2) C" rs1="sp   (x2) C" imm="32" beh="none" ></instruction>
+</step>
+<step pc="101a4" step="24"><jump target="10124" link="zero (x0)" link-address=" 101a8" beh="none" ></jump>
+</step>
+<step pc="10124" step="25"><jump target="101a8" link="ra   (x1)" link-address="10128" beh="none" ></jump>
+</step>
+<step pc="101a8" step="26"><instruction opcode="ADDI" rd="sp   (x2) C" rs1="sp   (x2) C" imm="4294967280" beh="none" ></instruction>
+</step>
+<step pc="101ac" step="27"><store opcode="SW" rs1="sp   (x2) C" imm="12" rs2="s0/fp(x8) C" target="0x55cda5886f00" beh="none" ></store>
+</step>
+<step pc="101b0" step="28"><instruction opcode="ADDI" rd="s0/fp(x8) C" rs1="sp   (x2) C" imm="16" beh="none" ></instruction>
+</step>
+<step pc="101b4" step="29"><instruction opcode="LUI" rd="a5  (x15) C" imm="33685504" beh="none" ></instruction></step>
+<step pc="101b8" step="30"><instruction opcode="ADDI" rd="a5  (x15) C" rs1="a5  (x15) C" imm="264" beh="none" ></instruction>
+</step>
+<step pc="101bc" step="31"><load opcode="LW" rs1="a5  (x15) C" imm="0" rd="a5  (x15) S" target="0x55cda58867e0" beh="create" ></load>
+</step>
+<step pc="101c0" step="32"><instruction opcode="ADDI" rd="a0  (x10) S" rs1="a5  (x15) S" imm="0" beh="create" ></instruction>
+</step>
+<step pc="101c4" step="33"><load opcode="LW" rs1="sp   (x2) C" imm="12" rd="s0/fp(x8) C" target="0x55cda58867e0" beh="none" ></load>
+</step>
+<step pc="101c8" step="34"><instruction opcode="ADDI" rd="sp   (x2) C" rs1="sp   (x2) C" imm="16" beh="none" ></instruction>
+</step>
+<step pc="101cc" step="35"><jump target="10128" link="zero (x0)" link-address=" 101d0" beh="none" ></jump>
+</step>
+<step pc="10128" step="36"><store opcode="SW" rs1="s0/fp(x8) C" imm="4294967276" rs2="a0  (x10) C" target="0x55cda58867e0" beh="create" ></store>
+</step>
+<step pc="1012c" step="37"><load opcode="LW" rs1="s0/fp(x8) C" imm="4294967276" rd="a4  (x14) S" target="0x55cda5886ff0" beh="create" ></load>
+</step>
+<step pc="10130" step="38"><instruction opcode="ADDI" rd="a5  (x15) C" rs1="zero (x0) C" imm="23" beh="destroy" ></instruction>
+</step>
+<step pc="10134" step="39"><branch opcode="BGEU" rs1="a5  (x15) C" rs2="a4  (x14) S" cond="0" target="10138" beh="special" ></branch>
+</step>
+<step pc="10138" step="40"><load opcode="LW" rs1="s0/fp(x8) C" imm="4294967276" rd="a4  (x14) S" target="0x55cda5886ff0" beh="overwrite" ></load>
+</step>
+<step pc="1013c" step="41"><instruction opcode="ADDI" rd="a5  (x15) C" rs1="zero (x0) C" imm="41" beh="none" ></instruction>
+</step>
+<step pc="10140" step="42"><branch opcode="BGEU" rs1="a5  (x15) C" rs2="a4  (x14) S" cond="1" target="1014c" beh="special" ></branch>
+</step>
+<step pc="1014c" step="43"><instruction opcode="ADDI" rd="a5  (x15) C" rs1="zero (x0) C" imm="0" beh="none" ></instruction>
+</step>
+<step pc="10150" step="44"><instruction opcode="ADDI" rd="a0  (x10) C" rs1="a5  (x15) C" imm="0" beh="destroy" ></instruction>
+</step>
+<step pc="10154" step="45"><load opcode="LW" rs1="sp   (x2) C" imm="28" rd="ra   (x1) C" target="0x55cda5864c40" beh="none" ></load>
+</step>
+<step pc="10158" step="46"><load opcode="LW" rs1="sp   (x2) C" imm="24" rd="s0/fp(x8) C" target="0x55cda5885e50" beh="none" ></load>
+</step>
+<step pc="1015c" step="47"><instruction opcode="ADDI" rd="sp   (x2) C" rs1="sp   (x2) C" imm="32" beh="none" ></instruction>
+</step>
+<step pc="10160" step="48"><jump target="10078" link="zero (x0)" link-address=" 10164" beh="none" ></jump>
+</step>
+<step pc="10078" step="49"><jump target="100dc" link="zero (x0)" link-address="1007c" beh="none" ></jump>
+</step>
+<step pc="100dc" step="50"><instruction opcode="ADDI" rd="sp   (x2) C" rs1="sp   (x2) C" imm="4294967280" beh="none" ></instruction>
+</step>
+<step pc="100e0" step="51"><store opcode="SW" rs1="sp   (x2) C" imm="12" rs2="ra   (x1) C" target="0x55cda5886880" beh="none" ></store>
+</step>
+<step pc="100e4" step="52"><store opcode="SW" rs1="sp   (x2) C" imm="8" rs2="s0/fp(x8) C" target="0x55cda5886f00" beh="none" ></store>
+</step>
+<step pc="100e8" step="53"><instruction opcode="ADDI" rd="s0/fp(x8) C" rs1="sp   (x2) C" imm="16" beh="none" ></instruction>
+</step>
+<step pc="100ec" step="54"><instruction opcode="ADDI" rd="a0  (x10) C" rs1="zero (x0) C" imm="1" beh="none" ></instruction>
+</step>
+<step pc="100f0" step="55"><jump target="1007c" link="ra   (x1)" link-address="100f4" beh="none" ></jump>
+</step>
+<step pc="1007c" step="56"><instruction opcode="ADDI" rd="sp   (x2) C" rs1="sp   (x2) C" imm="4294967248" beh="none" ></instruction>
+</step>
+<step pc="10080" step="57"><store opcode="SW" rs1="sp   (x2) C" imm="44" rs2="s0/fp(x8) C" target="0x55cda5886f00" beh="none" ></store>
+</step>
+<step pc="10084" step="58"><instruction opcode="ADDI" rd="s0/fp(x8) C" rs1="sp   (x2) C" imm="48" beh="none" ></instruction>
+</step>
+<step pc="10088" step="59"><store opcode="SW" rs1="s0/fp(x8) C" imm="4294967260" rs2="a0  (x10) C" target="0x55cda5886540" beh="none" ></store>
+</step>
+<step pc="1008c" step="60"><load opcode="LW" rs1="s0/fp(x8) C" imm="4294967260" rd="a5  (x15) C" target="0x55cda5885e50" beh="none" ></load>
+</step>
+<step pc="10090" step="61"><branch opcode="BEQ" rs1="a5  (x15) C" rs2="zero (x0) C" cond="0" target="10094" beh="none" ></branch>
+</step>
+<step pc="10094" step="62"><load opcode="LW" rs1="s0/fp(x8) C" imm="4294967260" rd="a4  (x14) C" target="0x55cda5885530" beh="destroy" ></load>
+</step>
+<step pc="10098" step="63"><instruction opcode="ADDI" rd="a5  (x15) C" rs1="zero (x0) C" imm="1" beh="none" ></instruction>
+</step>
+<step pc="1009c" step="64"><branch opcode="BEQ" rs1="a4  (x14) C" rs2="a5  (x15) C" cond="1" target="100b0" beh="none" ></branch>
+</step>
+<step pc="100b0" step="65"><instruction opcode="LUI" rd="a5  (x15) C" imm="1073741824" beh="none" ></instruction></step>
+<step pc="100b4" step="66"><store opcode="SW" rs1="s0/fp(x8) C" imm="4294967276" rs2="a5  (x15) C" target="0x55cda5885530" beh="none" ></store>
+</step>
+<step pc="100b8" step="67"><instruction opcode="ADDI" rd="zero (x0) C" rs1="zero (x0) C" imm="0" beh="none" ></instruction>
+</step>
+<step pc="100bc" step="68"><instruction opcode="LUI" rd="a5  (x15) C" imm="69632" beh="none" ></instruction></step>
+<step pc="100c0" step="69"><load opcode="LW" rs1="a5  (x15) C" imm="464" rd="a5  (x15) C" target="0x55cda5886660" beh="none" ></load>
+</step>
+<step pc="100c4" step="70"><load opcode="LW" rs1="s0/fp(x8) C" imm="4294967276" rd="a4  (x14) C" target="0x55cda5885530" beh="none" ></load>
+</step>
+<step pc="100c8" step="71"><store opcode="SW" rs1="a5  (x15) C" imm="0" rs2="a4  (x14) C" target="0x55cda5886a70" beh="none" ></store>
+</step>
+</run>
+
+
+Info: /OSCI/SystemC: Simulation stopped by user.
+=[ core : 0 ]===========================
+simulation time: 2530 ns
+zero (x0) = (none, 0)
+ra   (x1) = (none, 100f4)
+sp   (x2) = (none, 1ffffbc)
+gp   (x3) = (none, 0)
+tp   (x4) = (none, 0)
+t0   (x5) = (none, 0)
+t1   (x6) = (none, 0)
+t2   (x7) = (none, 0)
+s0/fp(x8) = (none, 1ffffec)
+s1   (x9) = (none, 0)
+a0  (x10) = (none, 1)
+a1  (x11) = (none, 2a)
+a2  (x12) = (none, 0)
+a3  (x13) = (none, 0)
+a4  (x14) = (none, 40000000)
+a5  (x15) = (none, 2020008)
+a6  (x16) = (none, 0)
+a7  (x17) = (none, 0)
+s2  (x18) = (none, 0)
+s3  (x19) = (none, 0)
+s4  (x20) = (none, 0)
+s5  (x21) = (none, 0)
+s6  (x22) = (none, 0)
+s7  (x23) = (none, 0)
+s8  (x24) = (none, 0)
+s9  (x25) = (none, 0)
+s10 (x26) = (none, 0)
+s11 (x27) = (none, 0)
+t3  (x28) = (none, 0)
+t4  (x29) = (none, 0)
+t5  (x30) = (none, 0)
+t6  (x31) = (none, 0)
+pc = 100cc
+num-instr = 72
+</symex>
+
+################################
+
+<symex run_id="1">
+<run start="0">
+<step pc="10074" step="0"><jump target="10108" link="ra   (x1)" link-address="10078" beh="none" ></jump>
+</step>
+<step pc="10108" step="1"><instruction opcode="ADDI" rd="sp   (x2) C" rs1="sp   (x2) C" imm="4294967264" beh="none" ></instruction>
+</step>
+<step pc="1010c" step="2"><store opcode="SW" rs1="sp   (x2) C" imm="28" rs2="ra   (x1) C" target="0x55cda5886e60" beh="none" ></store>
+</step>
+<step pc="10110" step="3"><store opcode="SW" rs1="sp   (x2) C" imm="24" rs2="s0/fp(x8) C" target="0x55cda5ad0a10" beh="none" ></store>
+</step>
+<step pc="10114" step="4"><instruction opcode="ADDI" rd="s0/fp(x8) C" rs1="sp   (x2) C" imm="32" beh="none" ></instruction>
+</step>
+<step pc="10118" step="5"><instruction opcode="ADDI" rd="a1  (x11) C" rs1="zero (x0) C" imm="42" beh="none" ></instruction>
+</step>
+<step pc="1011c" step="6"><instruction opcode="ADDI" rd="a0  (x10) C" rs1="zero (x0) C" imm="23" beh="none" ></instruction>
+</step>
+<step pc="10120" step="7"><jump target="10164" link="ra   (x1)" link-address="10124" beh="none" ></jump>
+</step>
+<step pc="10164" step="8"><instruction opcode="ADDI" rd="sp   (x2) C" rs1="sp   (x2) C" imm="4294967264" beh="none" ></instruction>
+</step>
+<step pc="10168" step="9"><store opcode="SW" rs1="sp   (x2) C" imm="28" rs2="s0/fp(x8) C" target="0x55cda5b2dac0" beh="none" ></store>
+</step>
+<step pc="1016c" step="10"><instruction opcode="ADDI" rd="s0/fp(x8) C" rs1="sp   (x2) C" imm="32" beh="none" ></instruction>
+</step>
+<step pc="10170" step="11"><store opcode="SW" rs1="s0/fp(x8) C" imm="4294967276" rs2="a0  (x10) C" target="0x55cda5b93130" beh="none" ></store>
+</step>
+<step pc="10174" step="12"><store opcode="SW" rs1="s0/fp(x8) C" imm="4294967272" rs2="a1  (x11) C" target="0x55cda5b93510" beh="none" ></store>
+</step>
+<step pc="10178" step="13"><instruction opcode="LUI" rd="a5  (x15) C" imm="33685504" beh="none" ></instruction></step>
+<step pc="1017c" step="14"><instruction opcode="ADDI" rd="a5  (x15) C" rs1="a5  (x15) C" imm="256" beh="none" ></instruction>
+</step>
+<step pc="10180" step="15"><load opcode="LW" rs1="s0/fp(x8) C" imm="4294967276" rd="a4  (x14) C" target="0x55cda5aea570" beh="none" ></load>
+</step>
+<step pc="10184" step="16"><store opcode="SW" rs1="a5  (x15) C" imm="0" rs2="a4  (x14) C" target="0x55cda5886540" beh="none" ></store>
+</step>
+<step pc="10188" step="17"><instruction opcode="LUI" rd="a5  (x15) C" imm="33685504" beh="none" ></instruction></step>
+<step pc="1018c" step="18"><instruction opcode="ADDI" rd="a5  (x15) C" rs1="a5  (x15) C" imm="260" beh="none" ></instruction>
+</step>
+<step pc="10190" step="19"><load opcode="LW" rs1="s0/fp(x8) C" imm="4294967272" rd="a4  (x14) C" target="0x55cda5b93130" beh="none" ></load>
+</step>
+<step pc="10194" step="20"><store opcode="SW" rs1="a5  (x15) C" imm="0" rs2="a4  (x14) C" target="0x55cda5aea610" beh="none" ></store>
+</step>
+<step pc="10198" step="21"><instruction opcode="ADDI" rd="zero (x0) C" rs1="zero (x0) C" imm="0" beh="none" ></instruction>
+</step>
+<step pc="1019c" step="22"><load opcode="LW" rs1="sp   (x2) C" imm="28" rd="s0/fp(x8) C" target="0x55cda5acef70" beh="none" ></load>
+</step>
+<step pc="101a0" step="23"><instruction opcode="ADDI" rd="sp   (x2) C" rs1="sp   (x2) C" imm="32" beh="none" ></instruction>
+</step>
+<step pc="101a4" step="24"><jump target="10124" link="zero (x0)" link-address=" 101a8" beh="none" ></jump>
+</step>
+<step pc="10124" step="25"><jump target="101a8" link="ra   (x1)" link-address="10128" beh="none" ></jump>
+</step>
+<step pc="101a8" step="26"><instruction opcode="ADDI" rd="sp   (x2) C" rs1="sp   (x2) C" imm="4294967280" beh="none" ></instruction>
+</step>
+<step pc="101ac" step="27"><store opcode="SW" rs1="sp   (x2) C" imm="12" rs2="s0/fp(x8) C" target="0x55cda5aea610" beh="none" ></store>
+</step>
+<step pc="101b0" step="28"><instruction opcode="ADDI" rd="s0/fp(x8) C" rs1="sp   (x2) C" imm="16" beh="none" ></instruction>
+</step>
+<step pc="101b4" step="29"><instruction opcode="LUI" rd="a5  (x15) C" imm="33685504" beh="none" ></instruction></step>
+<step pc="101b8" step="30"><instruction opcode="ADDI" rd="a5  (x15) C" rs1="a5  (x15) C" imm="264" beh="none" ></instruction>
+</step>
+<step pc="101bc" step="31"><load opcode="LW" rs1="a5  (x15) C" imm="0" rd="a5  (x15) S" target="0x55cda5b93130" beh="create" ></load>
+</step>
+<step pc="101c0" step="32"><instruction opcode="ADDI" rd="a0  (x10) S" rs1="a5  (x15) S" imm="0" beh="create" ></instruction>
+</step>
+<step pc="101c4" step="33"><load opcode="LW" rs1="sp   (x2) C" imm="12" rd="s0/fp(x8) C" target="0x55cda5b93130" beh="none" ></load>
+</step>
+<step pc="101c8" step="34"><instruction opcode="ADDI" rd="sp   (x2) C" rs1="sp   (x2) C" imm="16" beh="none" ></instruction>
+</step>
+<step pc="101cc" step="35"><jump target="10128" link="zero (x0)" link-address=" 101d0" beh="none" ></jump>
+</step>
+<step pc="10128" step="36"><store opcode="SW" rs1="s0/fp(x8) C" imm="4294967276" rs2="a0  (x10) C" target="0x55cda5b93130" beh="create" ></store>
+</step>
+<step pc="1012c" step="37"><load opcode="LW" rs1="s0/fp(x8) C" imm="4294967276" rd="a4  (x14) S" target="0x55cda5bc3e40" beh="create" ></load>
+</step>
+<step pc="10130" step="38"><instruction opcode="ADDI" rd="a5  (x15) C" rs1="zero (x0) C" imm="23" beh="destroy" ></instruction>
+</step>
+<step pc="10134" step="39"><branch opcode="BGEU" rs1="a5  (x15) C" rs2="a4  (x14) S" cond="1" target="10144" beh="special" ></branch>
+</step>
+<step pc="10144" step="40"><instruction opcode="ADDI" rd="a0  (x10) C" rs1="zero (x0) C" imm="0" beh="destroy" ></instruction>
+</step>
+<step pc="10148" step="41"><jump target="1007c" link="ra   (x1)" link-address="1014c" beh="none" ></jump>
+</step>
+<step pc="1007c" step="42"><instruction opcode="ADDI" rd="sp   (x2) C" rs1="sp   (x2) C" imm="4294967248" beh="none" ></instruction>
+</step>
+<step pc="10080" step="43"><store opcode="SW" rs1="sp   (x2) C" imm="44" rs2="s0/fp(x8) C" target="0x55cda5b93510" beh="none" ></store>
+</step>
+<step pc="10084" step="44"><instruction opcode="ADDI" rd="s0/fp(x8) C" rs1="sp   (x2) C" imm="48" beh="none" ></instruction>
+</step>
+<step pc="10088" step="45"><store opcode="SW" rs1="s0/fp(x8) C" imm="4294967260" rs2="a0  (x10) C" target="0x55cda5ad0da0" beh="none" ></store>
+</step>
+<step pc="1008c" step="46"><load opcode="LW" rs1="s0/fp(x8) C" imm="4294967260" rd="a5  (x15) C" target="0x55cda5bb5070" beh="none" ></load>
+</step>
+<step pc="10090" step="47"><branch opcode="BEQ" rs1="a5  (x15) C" rs2="zero (x0) C" cond="1" target="100a4" beh="none" ></branch>
+</step>
+<step pc="100a4" step="48"><instruction opcode="LUI" rd="a5  (x15) C" imm="2147483648" beh="none" ></instruction></step>
+<step pc="100a8" step="49"><store opcode="SW" rs1="s0/fp(x8) C" imm="4294967276" rs2="a5  (x15) C" target="0x55cda5aea610" beh="none" ></store>
+</step>
+<step pc="100ac" step="50"><jump target="100bc" link="zero (x0)" link-address="100b0" beh="none" ></jump>
+</step>
+<step pc="100bc" step="51"><instruction opcode="LUI" rd="a5  (x15) C" imm="69632" beh="none" ></instruction></step>
+<step pc="100c0" step="52"><load opcode="LW" rs1="a5  (x15) C" imm="464" rd="a5  (x15) C" target="0x55cda5bb5070" beh="none" ></load>
+</step>
+<step pc="100c4" step="53"><load opcode="LW" rs1="s0/fp(x8) C" imm="4294967276" rd="a4  (x14) C" target="0x55cda5aea610" beh="destroy" ></load>
+</step>
+<step pc="100c8" step="54"><store opcode="SW" rs1="a5  (x15) C" imm="0" rs2="a4  (x14) C" target="0x55cda5acef70" beh="none" ></store>
+</step>
+</run>
+
+
+Info: /OSCI/SystemC: Simulation stopped by user.
+=[ core : 0 ]===========================
+simulation time: 1950 ns
+zero (x0) = (none, 0)
+ra   (x1) = (none, 1014c)
+sp   (x2) = (none, 1ffffac)
+gp   (x3) = (none, 0)
+tp   (x4) = (none, 0)
+t0   (x5) = (none, 0)
+t1   (x6) = (none, 0)
+t2   (x7) = (none, 0)
+s0/fp(x8) = (none, 1ffffdc)
+s1   (x9) = (none, 0)
+a0  (x10) = (none, 0)
+a1  (x11) = (none, 2a)
+a2  (x12) = (none, 0)
+a3  (x13) = (none, 0)
+a4  (x14) = (none, 80000000)
+a5  (x15) = (none, 2020008)
+a6  (x16) = (none, 0)
+a7  (x17) = (none, 0)
+s2  (x18) = (none, 0)
+s3  (x19) = (none, 0)
+s4  (x20) = (none, 0)
+s5  (x21) = (none, 0)
+s6  (x22) = (none, 0)
+s7  (x23) = (none, 0)
+s8  (x24) = (none, 0)
+s9  (x25) = (none, 0)
+s10 (x26) = (none, 0)
+s11 (x27) = (none, 0)
+t3  (x28) = (none, 0)
+t4  (x29) = (none, 0)
+t5  (x30) = (none, 0)
+t6  (x31) = (none, 0)
+pc = 100cc
+num-instr = 55
+</symex>
+
+---
+Unique paths found: 2
+Solver Time: 0 seconds
+Errors found: 1
+Testcase directory: "/tmp/clover_tests2qCoU8"
+<timelines>
+<run id="0" >
+<branch pc="10138" step="39" hash="3337656678"></branch>
+<branch pc="1014c" step="42" hash="949841099"></branch>
+<branch pc="10094" step="61" hash="4025504181"></branch>
+<branch pc="100b0" step="64" hash="2007647044"></branch>
+</run>
+<run id="1" >
+<branch pc="10144" step="39" hash="3337656678"></branch>
+<branch pc="100a4" step="47" hash="2532533024"></branch>
+</run>
+</timelines>
+</trace>

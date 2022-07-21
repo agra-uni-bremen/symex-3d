@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdata>
+<cfgblocks>
+<run id="0">
+<block block_start="65652" block_end="65652" file_name="bootstrap.S" line_start="6" line_end="6" function_name="Unknown" >
+</block>
+<block block_start="65660" block_end="65680" file_name="main.c" line_start="16" line_end="20" function_name="symex_ctrl" >
+</block>
+<block block_start="65684" block_end="65692" file_name="main.c" line_start="20" line_end="20" function_name="symex_ctrl" >
+</block>
+<block block_start="65756" block_end="65776" file_name="main.c" line_start="34" line_end="35" function_name="symex_exit" >
+</block>
+<block block_start="65800" block_end="65824" file_name="main.c" line_start="40" line_end="43" function_name="main" >
+</block>
+<block block_start="65828" block_end="65828" file_name="main.c" line_start="44" line_end="44" function_name="main" >
+</block>
+<block block_start="65832" block_end="65844" file_name="main.c" line_start="44" line_end="52" function_name="main" >
+</block>
+<block block_start="65848" block_end="65856" file_name="main.c" line_start="52" line_end="52" function_name="main" >
+</block>
+<block block_start="65892" block_end="65956" file_name="sensor.c" line_start="9" line_end="12" function_name="main" >
+</block>
+</run>
+<run id="1">
+<block block_start="65652" block_end="65652" file_name="bootstrap.S" line_start="6" line_end="6" function_name="Unknown" >
+</block>
+<block block_start="65660" block_end="65680" file_name="main.c" line_start="16" line_end="20" function_name="symex_ctrl" >
+</block>
+<block block_start="65700" block_end="65708" file_name="main.c" line_start="22" line_end="23" function_name="symex_ctrl" >
+</block>
+<block block_start="65800" block_end="65824" file_name="main.c" line_start="40" line_end="43" function_name="main" >
+</block>
+<block block_start="65828" block_end="65828" file_name="main.c" line_start="44" line_end="44" function_name="main" >
+</block>
+<block block_start="65832" block_end="65844" file_name="main.c" line_start="44" line_end="52" function_name="main" >
+</block>
+<block block_start="65860" block_end="65864" file_name="main.c" line_start="52" line_end="52" function_name="main" >
+</block>
+<block block_start="65892" block_end="65956" file_name="sensor.c" line_start="9" line_end="12" function_name="main" >
+</block>
+</run>
+</cfgblocks>
+<functions>
+<function name="main" start="65800" end="65892"></function>
+<function name="symex_exit" start="65756" end="65800"></function>
+<function name="symex_ctrl" start="65660" end="65756"></function>
+<function name="sensor_read" start="65960" end="66000"></function>
+<function name="sensor_setup" start="65892" end="65960"></function>
+</functions>
+</cfdata>

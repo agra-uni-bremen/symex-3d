@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?><data ptrace_version="4.0">
+<runs name="test_trace">
+<run id="1" start="65652" end="65736" steps="71" parent="-1" start_step="0" start_pc="65652" ><instruction pc="0x10074" run_id="1" opcode="JAL" type="Jump" depth="0" target="65800" link="ra" link_address="65656"  >
+<step id="0" beh="none" ></step>
+</instruction><instruction pc="0x10108" run_id="1" opcode="ADDI" type="Arith" depth="1" rs1="sp" rs2="none" rd="sp" imm1="4294967264" imm2="None"  >
+<step id="1" beh="none" ></step>
+</instruction><instruction pc="0x1010c" run_id="1" opcode="SW" type="Store" depth="1" target="0x55fdaa0976d0" rs1="sp" imm1="None" rs2d="none"  >
+<step id="2" beh="none" ></step>
+</instruction><instruction pc="0x10110" run_id="1" opcode="SW" type="Store" depth="1" target="0x55fdaa1b4330" rs1="sp" imm1="None" rs2d="none"  >
+<step id="3" beh="none" ></step>
+</instruction><instruction pc="0x10114" run_id="1" opcode="ADDI" type="Arith" depth="1" rs1="sp" rs2="none" rd="s0" imm1="32" imm2="None"  >
+<step id="4" beh="none" ></step>
+</instruction><instruction pc="0x10118" run_id="1" opcode="ADDI" type="Arith" depth="1" rs1="zero" rs2="none" rd="a1" imm1="42" imm2="None"  >
+<step id="5" beh="none" ></step>
+</instruction><instruction pc="0x1011c" run_id="1" opcode="ADDI" type="Arith" depth="1" rs1="zero" rs2="none" rd="a0" imm1="23" imm2="None"  >
+<step id="6" beh="none" ></step>
+</instruction><instruction pc="0x10120" run_id="1" opcode="JAL" type="Jump" depth="1" target="65892" link="ra" link_address="65828"  >
+<step id="7" beh="none" ></step>
+</instruction><instruction pc="0x10164" run_id="1" opcode="ADDI" type="Arith" depth="2" rs1="sp" rs2="none" rd="sp" imm1="4294967264" imm2="None"  >
+<step id="8" beh="none" ></step>
+</instruction><instruction pc="0x10168" run_id="1" opcode="SW" type="Store" depth="2" target="0x55fdaa0ba490" rs1="sp" imm1="None" rs2d="none"  >
+<step id="9" beh="none" ></step>
+</instruction><instruction pc="0x1016c" run_id="1" opcode="ADDI" type="Arith" depth="2" rs1="sp" rs2="none" rd="s0" imm1="32" imm2="None"  >
+<step id="10" beh="none" ></step>
+</instruction><instruction pc="0x10170" run_id="1" opcode="SW" type="Store" depth="2" target="0x55fdaa1b5460" rs1="s0" imm1="None" rs2d="none"  >
+<step id="11" beh="none" ></step>
+</instruction><instruction pc="0x10174" run_id="1" opcode="SW" type="Store" depth="2" target="0x55fdaa1b5840" rs1="s0" imm1="None" rs2d="none"  >
+<step id="12" beh="none" ></step>
+</instruction><instruction pc="0x10178" run_id="1" opcode="LUI" type="Arith" depth="2" rs1="none" rs2="none" rd="a5" imm1="33685504" imm2="None"  >
+<step id="13" beh="none" ></step>
+</instruction><instruction pc="0x1017c" run_id="1" opcode="ADDI" type="Arith" depth="2" rs1="a5" rs2="none" rd="a5" imm1="256" imm2="None"  >
+<step id="14" beh="none" ></step>
+</instruction><instruction pc="0x10180" run_id="1" opcode="LW" type="Load" depth="2" target="0x55fdaa1b5ae0" rs1="s0" imm1="None" rs2d="none"  >
+<step id="15" beh="none" ></step>
+</instruction><instruction pc="0x10184" run_id="1" opcode="SW" type="Store" depth="2" target="0x55fdaa0ba8f0" rs1="a5" imm1="None" rs2d="none"  >
+<step id="16" beh="none" ></step>
+</instruction><instruction pc="0x10188" run_id="1" opcode="LUI" type="Arith" depth="2" rs1="none" rs2="none" rd="a5" imm1="33685504" imm2="None"  >
+<step id="17" beh="none" ></step>
+</instruction><instruction pc="0x1018c" run_id="1" opcode="ADDI" type="Arith" depth="2" rs1="a5" rs2="none" rd="a5" imm1="260" imm2="None"  >
+<step id="18" beh="none" ></step>
+</instruction><instruction pc="0x10190" run_id="1" opcode="LW" type="Load" depth="2" target="0x55fdaa1b5460" rs1="s0" imm1="None" rs2d="none"  >
+<step id="19" beh="none" ></step>
+</instruction><instruction pc="0x10194" run_id="1" opcode="SW" type="Store" depth="2" target="0x55fdaa1b5b80" rs1="a5" imm1="None" rs2d="none"  >
+<step id="20" beh="none" ></step>
+</instruction><instruction pc="0x10198" run_id="1" opcode="ADDI" type="Arith" depth="2" rs1="zero" rs2="none" rd="zero" imm1="0" imm2="None"  >
+<step id="21" beh="none" ></step>
+</instruction><instruction pc="0x1019c" run_id="1" opcode="LW" type="Load" depth="2" target="0x55fdaa0ba850" rs1="sp" imm1="None" rs2d="none"  >
+<step id="22" beh="none" ></step>
+</instruction><instruction pc="0x101a0" run_id="1" opcode="ADDI" type="Arith" depth="2" rs1="sp" rs2="none" rd="sp" imm1="32" imm2="None"  >
+<step id="23" beh="none" ></step>
+</instruction><instruction pc="0x101a4" run_id="1" opcode="JAL" type="Jump" depth="2" target="65828" link="zero" link_address="65960"  >
+<step id="24" beh="none" ></step>
+</instruction><instruction pc="0x10124" run_id="1" opcode="JAL" type="Jump" depth="2" target="65960" link="ra" link_address="65832"  >
+<step id="25" beh="none" ></step>
+</instruction><instruction pc="0x101a8" run_id="1" opcode="ADDI" type="Arith" depth="3" rs1="sp" rs2="none" rd="sp" imm1="4294967280" imm2="None"  >
+<step id="26" beh="none" ></step>
+</instruction><instruction pc="0x101ac" run_id="1" opcode="SW" type="Store" depth="3" target="0x55fdaa1b5b80" rs1="sp" imm1="None" rs2d="none"  >
+<step id="27" beh="none" ></step>
+</instruction><instruction pc="0x101b0" run_id="1" opcode="ADDI" type="Arith" depth="3" rs1="sp" rs2="none" rd="s0" imm1="16" imm2="None"  >
+<step id="28" beh="none" ></step>
+</instruction><instruction pc="0x101b4" run_id="1" opcode="LUI" type="Arith" depth="3" rs1="none" rs2="none" rd="a5" imm1="33685504" imm2="None"  >
+<step id="29" beh="none" ></step>
+</instruction><instruction pc="0x101b8" run_id="1" opcode="ADDI" type="Arith" depth="3" rs1="a5" rs2="none" rd="a5" imm1="264" imm2="None"  >
+<step id="30" beh="none" ></step>
+</instruction><instruction pc="0x101bc" run_id="1" opcode="LW" type="Load" depth="3" target="0x55fdaa1b5460" rs1="a5" imm1="None" rs2d="none"  >
+<step id="31" beh="create" ></step>
+</instruction><instruction pc="0x101c0" run_id="1" opcode="ADDI" type="Arith" depth="3" rs1="a5" rs2="none" rd="a0" imm1="0" imm2="None"  >
+<step id="32" beh="create" ></step>
+</instruction><instruction pc="0x101c4" run_id="1" opcode="LW" type="Load" depth="3" target="0x55fdaa1b5460" rs1="sp" imm1="None" rs2d="none"  >
+<step id="33" beh="none" ></step>
+</instruction><instruction pc="0x101c8" run_id="1" opcode="ADDI" type="Arith" depth="3" rs1="sp" rs2="none" rd="sp" imm1="16" imm2="None"  >
+<step id="34" beh="none" ></step>
+</instruction><instruction pc="0x101cc" run_id="1" opcode="JAL" type="Jump" depth="3" target="65832" link="zero" link_address="66000"  >
+<step id="35" beh="none" ></step>
+</instruction><instruction pc="0x10128" run_id="1" opcode="SW" type="Store" depth="3" target="0x55fdaa1b5460" rs1="s0" imm1="None" rs2d="none"  >
+<step id="36" beh="create" ></step>
+</instruction><instruction pc="0x1012c" run_id="1" opcode="LW" type="Load" depth="3" target="0x55fdaa1b5c70" rs1="s0" imm1="None" rs2d="none"  >
+<step id="37" beh="create" ></step>
+</instruction><instruction pc="0x10130" run_id="1" opcode="ADDI" type="Arith" depth="3" rs1="zero" rs2="none" rd="a5" imm1="23" imm2="None"  >
+<step id="38" beh="destroy" ></step>
+</instruction><instruction pc="0x10134" run_id="1" opcode="BGEU" type="Branch" depth="3" target="65848" rs1="a5" rs2="none" condition="False"  >
+<step id="39" beh="special" edge="0" ></step>
+</instruction><instruction pc="0x10138" run_id="1" opcode="LW" type="Load" depth="3" target="0x55fdaa1b5c70" rs1="s0" imm1="None" rs2d="none"  >
+<step id="40" beh="overwrite" ></step>
+</instruction><instruction pc="0x1013c" run_id="1" opcode="ADDI" type="Arith" depth="3" rs1="zero" rs2="none" rd="a5" imm1="41" imm2="None"  >
+<step id="41" beh="none" ></step>
+</instruction><instruction pc="0x10140" run_id="1" opcode="BGEU" type="Branch" depth="3" target="65868" rs1="a5" rs2="none" condition="True"  >
+<step id="42" beh="special" edge="1" ></step>
+</instruction><instruction pc="0x1014c" run_id="1" opcode="ADDI" type="Arith" depth="3" rs1="zero" rs2="none" rd="a5" imm1="0" imm2="None"  >
+<step id="43" beh="none" ></step>
+</instruction><instruction pc="0x10150" run_id="1" opcode="ADDI" type="Arith" depth="3" rs1="a5" rs2="none" rd="a0" imm1="0" imm2="None"  >
+<step id="44" beh="destroy" ></step>
+</instruction><instruction pc="0x10154" run_id="1" opcode="LW" type="Load" depth="3" target="0x55fdaa0ba850" rs1="sp" imm1="None" rs2d="none"  >
+<step id="45" beh="none" ></step>
+</instruction><instruction pc="0x10158" run_id="1" opcode="LW" type="Load" depth="3" target="0x55fdaa1b4b20" rs1="sp" imm1="None" rs2d="none"  >
+<step id="46" beh="none" ></step>
+</instruction><instruction pc="0x1015c" run_id="1" opcode="ADDI" type="Arith" depth="3" rs1="sp" rs2="none" rd="sp" imm1="32" imm2="None"  >
+<step id="47" beh="none" ></step>
+</instruction><instruction pc="0x10160" run_id="1" opcode="JAL" type="Jump" depth="3" target="65656" link="zero" link_address="65892"  >
+<step id="48" beh="none" ></step>
+</instruction><instruction pc="0x10078" run_id="1" opcode="JAL" type="Jump" depth="3" target="65756" link="zero" link_address="65660"  >
+<step id="49" beh="none" ></step>
+</instruction><instruction pc="0x100dc" run_id="1" opcode="ADDI" type="Arith" depth="3" rs1="sp" rs2="none" rd="sp" imm1="4294967280" imm2="None"  >
+<step id="50" beh="none" ></step>
+</instruction><instruction pc="0x100e0" run_id="1" opcode="SW" type="Store" depth="3" target="0x55fdaa1b5500" rs1="sp" imm1="None" rs2d="none"  >
+<step id="51" beh="none" ></step>
+</instruction><instruction pc="0x100e4" run_id="1" opcode="SW" type="Store" depth="3" target="0x55fdaa1b5b80" rs1="sp" imm1="None" rs2d="none"  >
+<step id="52" beh="none" ></step>
+</instruction><instruction pc="0x100e8" run_id="1" opcode="ADDI" type="Arith" depth="3" rs1="sp" rs2="none" rd="s0" imm1="16" imm2="None"  >
+<step id="53" beh="none" ></step>
+</instruction><instruction pc="0x100ec" run_id="1" opcode="ADDI" type="Arith" depth="3" rs1="zero" rs2="none" rd="a0" imm1="1" imm2="None"  >
+<step id="54" beh="none" ></step>
+</instruction><instruction pc="0x100f0" run_id="1" opcode="JAL" type="Jump" depth="3" target="65660" link="ra" link_address="65780"  >
+<step id="55" beh="none" ></step>
+</instruction><instruction pc="0x1007c" run_id="1" opcode="ADDI" type="Arith" depth="4" rs1="sp" rs2="none" rd="sp" imm1="4294967248" imm2="None"  >
+<step id="56" beh="none" ></step>
+</instruction><instruction pc="0x10080" run_id="1" opcode="SW" type="Store" depth="4" target="0x55fdaa1b5b80" rs1="sp" imm1="None" rs2d="none"  >
+<step id="57" beh="none" ></step>
+</instruction><instruction pc="0x10084" run_id="1" opcode="ADDI" type="Arith" depth="4" rs1="sp" rs2="none" rd="s0" imm1="48" imm2="None"  >
+<step id="58" beh="none" ></step>
+</instruction><instruction pc="0x10088" run_id="1" opcode="SW" type="Store" depth="4" target="0x55fdaa1b5230" rs1="s0" imm1="None" rs2d="none"  >
+<step id="59" beh="none" ></step>
+</instruction><instruction pc="0x1008c" run_id="1" opcode="LW" type="Load" depth="4" target="0x55fdaa1b4b20" rs1="s0" imm1="None" rs2d="none"  >
+<step id="60" beh="none" ></step>
+</instruction><instruction pc="0x10090" run_id="1" opcode="BEQ" type="Branch" depth="4" target="65684" rs1="a5" rs2="none" condition="False"  >
+<step id="61" beh="none" edge="0" ></step>
+</instruction><instruction pc="0x10094" run_id="1" opcode="LW" type="Load" depth="4" target="0x55fdaa1b41e0" rs1="s0" imm1="None" rs2d="none"  >
+<step id="62" beh="destroy" ></step>
+</instruction><instruction pc="0x10098" run_id="1" opcode="ADDI" type="Arith" depth="4" rs1="zero" rs2="none" rd="a5" imm1="1" imm2="None"  >
+<step id="63" beh="none" ></step>
+</instruction><instruction pc="0x1009c" run_id="1" opcode="BEQ" type="Branch" depth="4" target="65712" rs1="a4" rs2="none" condition="True"  >
+<step id="64" beh="none" edge="1" ></step>
+</instruction><instruction pc="0x100b0" run_id="1" opcode="LUI" type="Arith" depth="4" rs1="none" rs2="none" rd="a5" imm1="1073741824" imm2="None"  >
+<step id="65" beh="none" ></step>
+</instruction><instruction pc="0x100b4" run_id="1" opcode="SW" type="Store" depth="4" target="0x55fdaa1b41e0" rs1="s0" imm1="None" rs2d="none"  >
+<step id="66" beh="none" ></step>
+</instruction><instruction pc="0x100b8" run_id="1" opcode="ADDI" type="Arith" depth="4" rs1="zero" rs2="none" rd="zero" imm1="0" imm2="None"  >
+<step id="67" beh="none" ></step>
+</instruction><instruction pc="0x100bc" run_id="1" opcode="LUI" type="Arith" depth="4" rs1="none" rs2="none" rd="a5" imm1="69632" imm2="None"  >
+<step id="68" beh="none" ></step>
+</instruction><instruction pc="0x100c0" run_id="1" opcode="LW" type="Load" depth="4" target="0x55fdaa1b52e0" rs1="a5" imm1="None" rs2d="none"  >
+<step id="69" beh="none" ></step>
+</instruction><instruction pc="0x100c4" run_id="1" opcode="LW" type="Load" depth="4" target="0x55fdaa1b41e0" rs1="s0" imm1="None" rs2d="none"  >
+<step id="70" beh="none" ></step>
+</instruction><instruction pc="0x100c8" run_id="1" opcode="SW" type="Store" depth="4" target="0x55fdaa1b56f0" rs1="a5" imm1="None" rs2d="none"  >
+<step id="71" beh="none" ></step>
+</instruction></run><run id="2" start="65652" end="65736" steps="54" parent="0" start_step="0" start_pc="65652" ><instruction pc="0x10134" run_id="2" opcode="BGEU" type="Branch" depth="3" target="65860" rs1="a5" rs2="none" condition="True"  >
+<step id="39" beh="special" edge="1" ></step>
+</instruction><instruction pc="0x10144" run_id="2" opcode="ADDI" type="Arith" depth="3" rs1="zero" rs2="none" rd="a0" imm1="0" imm2="None"  >
+<step id="40" beh="destroy" ></step>
+</instruction><instruction pc="0x10148" run_id="2" opcode="JAL" type="Jump" depth="3" target="65660" link="ra" link_address="65868"  >
+<step id="41" beh="none" ></step>
+</instruction><instruction pc="0x1007c" run_id="2" opcode="ADDI" type="Arith" depth="4" rs1="sp" rs2="none" rd="sp" imm1="4294967248" imm2="None"  >
+<step id="42" beh="none" ></step>
+</instruction><instruction pc="0x10080" run_id="2" opcode="SW" type="Store" depth="4" target="0x55fdaa42bf40" rs1="sp" imm1="None" rs2d="none"  >
+<step id="43" beh="none" ></step>
+</instruction><instruction pc="0x10084" run_id="2" opcode="ADDI" type="Arith" depth="4" rs1="sp" rs2="none" rd="s0" imm1="48" imm2="None"  >
+<step id="44" beh="none" ></step>
+</instruction><instruction pc="0x10088" run_id="2" opcode="SW" type="Store" depth="4" target="0x55fdaa42b9b0" rs1="s0" imm1="None" rs2d="none"  >
+<step id="45" beh="none" ></step>
+</instruction><instruction pc="0x1008c" run_id="2" opcode="LW" type="Load" depth="4" target="0x55fdaa42c8b0" rs1="s0" imm1="None" rs2d="none"  >
+<step id="46" beh="none" ></step>
+</instruction><instruction pc="0x10090" run_id="2" opcode="BEQ" type="Branch" depth="4" target="65700" rs1="a5" rs2="none" condition="True"  >
+<step id="47" beh="none" edge="1" ></step>
+</instruction><instruction pc="0x100a4" run_id="2" opcode="LUI" type="Arith" depth="4" rs1="none" rs2="none" rd="a5" imm1="2147483648" imm2="None"  >
+<step id="48" beh="none" ></step>
+</instruction><instruction pc="0x100a8" run_id="2" opcode="SW" type="Store" depth="4" target="0x55fdaa42c280" rs1="s0" imm1="None" rs2d="none"  >
+<step id="49" beh="none" ></step>
+</instruction><instruction pc="0x100ac" run_id="2" opcode="JAL" type="Jump" depth="4" target="65724" link="zero" link_address="65712"  >
+<step id="50" beh="none" ></step>
+</instruction><instruction pc="0x100bc" run_id="2" opcode="LUI" type="Arith" depth="4" rs1="none" rs2="none" rd="a5" imm1="69632" imm2="None"  >
+<step id="51" beh="none" ></step>
+</instruction><instruction pc="0x100c0" run_id="2" opcode="LW" type="Load" depth="4" target="0x55fdaa42c8b0" rs1="a5" imm1="None" rs2d="none"  >
+<step id="52" beh="none" ></step>
+</instruction><instruction pc="0x100c4" run_id="2" opcode="LW" type="Load" depth="4" target="0x55fdaa42c280" rs1="s0" imm1="None" rs2d="none"  >
+<step id="53" beh="destroy" ></step>
+</instruction><instruction pc="0x100c8" run_id="2" opcode="SW" type="Store" depth="4" target="0x55fdaa0bcdb0" rs1="a5" imm1="None" rs2d="none"  >
+<step id="54" beh="none" ></step>
+</instruction></run></runs>
+<Analysis global_start="0x10074" min_pc="0x10074" max_pc="0x101cc" num_runs="2" timeline_forks="[0]">
+ <potential_children><run id="0" run_start_pc="0x0" run_start_step="0" run_parent="-1">
+     <potential_child hash="3337656678" pc="0x10138" step="39"></potential_child>
+     <potential_child hash="949841099" pc="0x1014c" step="42"></potential_child>
+     <potential_child hash="4025504181" pc="0x10094" step="61"></potential_child>
+     <potential_child hash="2007647044" pc="0x100b0" step="64"></potential_child>
+</run>
+<run id="1" run_start_pc="0x10138" run_start_step="39" run_parent="0">
+     <potential_child hash="3337656678" pc="0x10144" step="39"></potential_child>
+     <potential_child hash="2532533024" pc="0x100a4" step="47"></potential_child>
+</run>
+</potential_children>
+<discovered_links><run id="0" >
+     <child id="1" pc="65848" step="39" ></child>
+</run>
+<run id="1" >
+</run>
+</discovered_links><memory>
+  <address value="94547967833808"></address>  <address value="94547967976592"></address>  <address value="94547967977552"></address>  <address value="94547967977712"></address>
+  <address value="94547967987120"></address>  <address value="94547967990128"></address>  <address value="94547967993168"></address>  <address value="94547967998592"></address>
+  <address value="94547968999904"></address>  <address value="94547969000240"></address>  <address value="94547969002272"></address>  <address value="94547969004080"></address>
+  <address value="94547969004256"></address>  <address value="94547969004640"></address>  <address value="94547969004800"></address>  <address value="94547969005296"></address>
+  <address value="94547969005632"></address>  <address value="94547969006304"></address>  <address value="94547969006464"></address>  <address value="94547969006704"></address>
+  <address value="94547971583504"></address>  <address value="94547971586400"></address>  <address value="94547971586480"></address>  <address value="94547971586864"></address>
+  <address value="94547971587904"></address>  <address value="94547971588576"></address>  <address value="94547971588736"></address>  <address value="94547971590320"></address>
+</memory>
+<memory_per_run>
+<run id="0">
+  <address value="94547969005632"></address>  <address value="94547969004640"></address>  <address value="94547969006304"></address>  <address value="94547969006464"></address>
+  <address value="94547969002272"></address>  <address value="94547969004800"></address>  <address value="94547968999904"></address>  <address value="94547969004256"></address>
+  <address value="94547967833808"></address>  <address value="94547969000240"></address>  <address value="94547967976592"></address>  <address value="94547967977712"></address>
+  <address value="94547967977552"></address>  <address value="94547969006704"></address>  <address value="94547969004080"></address>  <address value="94547969005296"></address>
+</run>
+<run id="1">
+  <address value="94547971587904"></address>  <address value="94547967998592"></address>  <address value="94547971588576"></address>  <address value="94547971588736"></address>
+  <address value="94547971586400"></address>  <address value="94547967990128"></address>  <address value="94547971583504"></address>  <address value="94547971586864"></address>
+  <address value="94547967993168"></address>  <address value="94547967987120"></address>  <address value="94547971586480"></address>  <address value="94547971590320"></address>
+</run>
+</memory_per_run>
+</Analysis>
+</data>
