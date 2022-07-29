@@ -51,3 +51,10 @@ def read_xml(path):
     tree = ET.parse(path)
     root = tree.getroot()
     return (tree,root)
+    
+def confirm(message):
+    answer = input(message)
+    if (answer.lower() in ["y", "yes"]):
+        return True
+    else:
+        return False

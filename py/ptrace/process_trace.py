@@ -6,12 +6,12 @@ import os.path
 import xml.etree.ElementTree as ET
 
 from enum import Enum
-from ptrace.Enums.riscv_enum import Opcode, Opcode_type, Reg, Symbolic_Beh
-from ptrace.Data.instructions import Run, Instruction, Arith_Instruction, Jump, Branch, LoadStore, CSR, Analysis_Data, Link_Node, Link_Data
-from ptrace.Data.blocks import CFBlock
-from ptrace.utils.utils import open_file, save_file_binary, save_file_text, read_xml, confirm, terminal_colors
+from visualization.Enums.riscv_enum import Opcode, Opcode_type, Reg, Symbolic_Beh
+from visualization.Data.instructions import Run, Instruction, Arith_Instruction, Jump, Branch, LoadStore, CSR, Analysis_Data, Link_Node, Link_Data
+from visualization.Data.blocks import CFBlock
+from visualization.utils.utils import open_file, save_file_binary, save_file_text, read_xml, confirm, terminal_colors
 
-from ptrace.Data.xml_parser import parse_ptrace_xml, parse_analysis_xml
+from visualization.Data.xml_parser import parse_ptrace_xml, parse_analysis_xml
 
 #from elftools.elf.elffile import ELFFile #TODO fix imports
 

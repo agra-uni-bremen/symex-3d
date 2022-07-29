@@ -6,7 +6,7 @@ from elftools.dwarf.descriptions import describe_form_class
 import xml.etree.ElementTree as ET
 import os.path
 
-from ptrace.utils.utils import save_file_text, read_xml, confirm, terminal_colors
+from visualization.utils.utils import save_file_text, read_xml, confirm, terminal_colors
 
 class CFBlock:
     block_start = -1
