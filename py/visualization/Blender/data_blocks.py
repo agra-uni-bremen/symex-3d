@@ -4,10 +4,14 @@ import math
 import visualization.Blender.blender_utils as bu
 import visualization.Blender.config as cfg
 
+
+def _created_object():
+    return bpy.context.active_object
+
 def create_instruction(name, location):
     bpy.ops.mesh.primitive_cube_add(size=cfg.BASE_SIZE, enter_editmode=False, align='WORLD', 
                                         location=location, scale=(1, 1, 1))
-    cube = bpy.context.selected_objects[0]
+    cube = _created_object()
     cube.name = name
     bu.assign_material(cube,"mat_instruction")
     bu.scale_object((cfg.CUBE_SIZE, cfg.CUBE_SIZE, cfg.CUBE_SIZE))
@@ -16,7 +20,7 @@ def create_instruction(name, location):
 def create_memory(name, location):
     bpy.ops.mesh.primitive_cube_add(size=cfg.BASE_SIZE, enter_editmode=False, align='WORLD', 
                                         location=location, scale=(1, 1, 1))
-    cube = bpy.context.selected_objects[0]
+    cube = _created_object()
     cube.name = name
     bu.assign_material(cube,"mat_memory")
     bu.scale_object((cfg.CUBE_SIZE, cfg.CUBE_SIZE, cfg.CUBE_SIZE))
@@ -28,7 +32,7 @@ def create_ecall(name, location):
                                             enter_editmode=False, align='WORLD', 
                                             location=location, 
                                             scale=(cfg.BASE_SIZE*0.75, cfg.BASE_SIZE*0.75, cfg.BASE_SIZE*0.75))
-    sphere = bpy.context.selected_objects[0]
+    sphere = _created_object()
     sphere.name = name
     bu.assign_material(sphere,"mat_ecall")
     bu.scale_object((cfg.CUBE_SIZE, cfg.CUBE_SIZE, cfg.CUBE_SIZE))
@@ -40,14 +44,14 @@ def create_jump(name, location, jump_target, pc, depth,global_start):
                                             enter_editmode=False, align='WORLD', 
                                             location=location, 
                                             scale=(1, 1, 1))#TODO scale?
-    jump = bpy.context.selected_objects[0]
+    jump = _created_object()
     jump.name = name
     bu.assign_material(jump,"mat_jump")
     bu.scale_object((cfg.CUBE_SIZE, cfg.CUBE_SIZE, cfg.CUBE_SIZE))
 
     #create jump curve TODO: handle duplicate
     create_curve(radius=cfg.BASE_SIZE, location=location)
-    curve = bpy.context.selected_objects[0]
+    curve = _created_object()
     curve.name = name + "_branch"
     curve.data.bevel_depth = 0.02
     target_x = (((jump_target-global_start) - (pc-global_start))* cfg.INSTRUCTION_DISTANCE)+cfg.INSTRUCTION_DISTANCE/2
@@ -57,14 +61,14 @@ def create_jump(name, location, jump_target, pc, depth,global_start):
     return (jump,curve)
 
 def create_curve(radius, location):
-    curve = bpy.ops.curve.primitive_nurbs_path_add(radius=radius, enter_editmode=False, align='WORLD', 
+    bpy.ops.curve.primitive_nurbs_path_add(radius=radius, enter_editmode=False, align='WORLD', 
                                                 location=location, scale=(1, 1, 1))
-    return curve
+    return _created_object()
 
 def create_timeline_branch(name, location, x_target_offset, y_target_offset):
     #create jump curve TODO: handle duplicate
     create_curve(radius=cfg.BASE_SIZE, location=location)
-    curve = bpy.context.selected_objects[0]
+    curve = _created_object()
     curve.name = name
     curve.data.bevel_depth = 0.02
     target_point = (x_target_offset,y_target_offset, 0)
@@ -81,7 +85,7 @@ def create_branch(name, location, jump_target, pc, depth, branch_edge,global_sta
                                             location=location, 
                                             scale=(1, 1, 1))
 
-    branch = bpy.context.selected_objects[0]
+    branch = _created_object()
     branch.name = name
     bu.assign_material(branch,"mat_branch")
     bu.scale_object((cfg.CUBE_SIZE, cfg.CUBE_SIZE, cfg.CUBE_SIZE))
@@ -90,7 +94,7 @@ def create_branch(name, location, jump_target, pc, depth, branch_edge,global_sta
     if(branch_edge):
         #create branch curve TODO: handle duplicate
         create_curve(radius=cfg.BASE_SIZE, location=location)
-        curve = bpy.context.selected_objects[0]
+        curve = _created_object()
         curve.name = name + "_branch"
         target_x = (((jump_target-global_start) - (pc-global_start))* cfg.INSTRUCTION_DISTANCE)+cfg.INSTRUCTION_DISTANCE/2
         target_point = (target_x,0, 0)#todo set depth diff
@@ -102,7 +106,7 @@ def create_branch(name, location, jump_target, pc, depth, branch_edge,global_sta
 def create_load(name, location):
     bpy.ops.mesh.primitive_cylinder_add(radius=cfg.BASE_SIZE/2, depth=cfg.BASE_SIZE, enter_editmode=False, align='WORLD', 
                                             location=location, scale=(1, 1, 1))
-    cyl = bpy.context.selected_objects[0]
+    cyl = _created_object()
     cyl.name = name
     bu.assign_material(cyl,"mat_load")
     bu.scale_object((cfg.CUBE_SIZE, cfg.CUBE_SIZE, cfg.CUBE_SIZE))
@@ -111,7 +115,7 @@ def create_load(name, location):
 def create_store(name, location):
     bpy.ops.mesh.primitive_cylinder_add(radius=cfg.BASE_SIZE/2, depth=cfg.BASE_SIZE, enter_editmode=False, align='WORLD', 
                                             location=location, scale=(1, 1, 1))
-    cyl = bpy.context.selected_objects[0]
+    cyl = _created_object()
     cyl.name = name
     bu.assign_material(cyl,"mat_store")
     bu.scale_object((cfg.CUBE_SIZE, cfg.CUBE_SIZE, cfg.CUBE_SIZE))
@@ -122,7 +126,7 @@ def create_csr(name, location):
                                             enter_editmode=False, align='WORLD', 
                                             location=location, 
                                             scale=(cfg.BASE_SIZE*0.75, cfg.BASE_SIZE*0.75, cfg.BASE_SIZE*0.75))
-    sphere = bpy.context.selected_objects[0]
+    sphere = _created_object()
     sphere.name = name
     bu.assign_material(sphere,"mat_csr")
     bu.scale_object((cfg.CUBE_SIZE, cfg.CUBE_SIZE, cfg.CUBE_SIZE))
@@ -132,7 +136,7 @@ def create_active_marker(name, run):
     bpy.ops.mesh.primitive_cone_add(vertices=4, enter_editmode=False, align='WORLD', 
                                         location=(0, run*cfg.RUN_DISTANCE, cfg.DEPTH_MULT), 
                                         scale=(1, 1, 1))
-    marker = bpy.context.selected_objects[0]
+    marker = _created_object()
     marker.name = name
     bu.assign_material(marker,"mat_marker")
     bu.scale_object((cfg.CUBE_SIZE, cfg.CUBE_SIZE, cfg.CUBE_SIZE))
@@ -146,8 +150,9 @@ def create_active_marker(name, run):
 def create_camera(run):
     bpy.ops.object.camera_add(enter_editmode=False, align='VIEW', location=(0, run*cfg.RUN_DISTANCE, cfg.CAM_DISTANCE), 
                                 rotation=(0, 0, math.radians(90)), scale=(1, 1, 1))
-    bpy.context.selected_objects[0].name = f"cam_{run}"
-    return bpy.context.selected_objects[0]
+    cam = _created_object()
+    cam.name = f"cam_{run}"
+    return cam
 
 
 def create_block(cf_block, run, global_start):
@@ -158,7 +163,7 @@ def create_block(cf_block, run, global_start):
 
     bpy.ops.mesh.primitive_cube_add(size=cfg.BASE_SIZE, enter_editmode=False, align='WORLD', 
                                         location=location, scale=(1, 1, 1))
-    cube = bpy.context.selected_objects[0]
+    cube = _created_object()
     cube.name = f"cf_block_{hex(cf_block.block_start)}_{hex(cf_block.block_end)}_{run}"
     bu.assign_material(cube,"mat_cf_block")
     bu.scale_object((max(x_range,0.2), y_range, cfg.CUBE_SIZE*2))
@@ -179,7 +184,7 @@ def create_function(name:str, function_start:int, function_end:int, global_start
 
     bpy.ops.mesh.primitive_cube_add(size=cfg.BASE_SIZE, enter_editmode=False, align='WORLD', 
                                         location=location, scale=(1, 1, 1))
-    cube = bpy.context.selected_objects[0]
+    cube = _created_object()
     cube.name = function_name
     bu.assign_material(cube,"mat_function")
     bu.scale_object((x_range, y_range, cfg.CUBE_SIZE*4))#'INDIVIDUAL_ORIGINS'

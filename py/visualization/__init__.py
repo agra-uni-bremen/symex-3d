@@ -1,13 +1,17 @@
+# pyright: reportMissingImports=false
+
 bl_info = {
     "name": "SymEx Import",
-    "blender": (2, 92, 0),
+    "blender": (5, 1, 2),
     "category": "Import-Export",
     "location": "File > Import",
 }
 
 import importlib
-#for Python version 3.4+ (not currently supported by Blender version 3.2.1) use importlib.util.find_spec("bpy")
-is_run_as_a_Blender_addon = importlib.find_loader("bpy") 
+import importlib.util
+
+# Use a Python 3.12-safe Blender detection path.
+is_run_as_a_Blender_addon = importlib.util.find_spec("bpy")
 
 """ignore all Blender addon related functions if not run inside a Blender instance"""
 if(is_run_as_a_Blender_addon is not None):
@@ -49,45 +53,45 @@ if(is_run_as_a_Blender_addon is not None):
 
         # List of operator properties, the attributes will be assigned
         # to the class instance from the operator settings before calling.
-        use_setting: BoolProperty(
+        use_setting: BoolProperty(  # type: ignore[misc]
             name="Auto select .blk file",
             description="Automatically select the matching .blk file for the currently highlighted .ptrace",
             default=True,
         )
-        max_steps: IntProperty(
+        max_steps: IntProperty(  # type: ignore[misc]
             name="Max Steps", #MAX_STEPS_TO_GENERATE
             default=300, 
             min=1, 
             max=3000
         )
-        frames_per_step: IntProperty(
+        frames_per_step: IntProperty(  # type: ignore[misc]
             name="Frames per step (animation speed)", #MAX_STEPS_TO_GENERATE
             default=4, 
             min=1, 
             max=600
         )
-        cube_size: FloatProperty(
+        cube_size: FloatProperty(  # type: ignore[misc]
             name="Size", #CUBE_SIZE
             default=1, 
             min=0.01, 
             max=10.0
         )
 
-        trace_blocks_path: StringProperty(
+        trace_blocks_path: StringProperty(  # type: ignore[misc]
         name = "(Optional) Path to Blocks.blk",
         default = "",
         description = "Path to the location of blocks.blk",
         subtype = 'FILE_PATH'
         )
 
-        source_code: StringProperty(
+        source_code: StringProperty(  # type: ignore[misc]
         name = "(Optional) Path to single source code file",
         default = "",
         description = "Path to single source code file used to annotate Function Blocks",
         subtype = 'FILE_PATH'
         )
 
-        filepath: StringProperty(
+        filepath: StringProperty(  # type: ignore[misc]
         name = "Path to .ptrace xml file",
         default = "",
         maxlen = 1024,
@@ -95,16 +99,14 @@ if(is_run_as_a_Blender_addon is not None):
         subtype = 'FILE_PATH'
         )
 
-        do_smth: EnumProperty(
+        do_smth: EnumProperty(  # type: ignore[misc]
                 name="Split",
                 items=(('ON', "Create Scene", "Run the script as normal"),
                     ('OFF', "Just check the script", "Don't do anything and exit"),
                     ),
                 )
 
-        def __init__(self):
-            self.last_blocks_path = ""
-            super().__init__()
+        last_blocks_path = ""
 
         def draw(self, context):
             layout = self.layout

@@ -139,7 +139,7 @@ def create_scene_from_processed_trace(runs, analysis_data):
             run_start_location = ((run_actual_start-global_start)*cfg.INSTRUCTION_DISTANCE, run_id*cfg.RUN_DISTANCE, run.instruction_list[0].depth*cfg.DEPTH_MULT)
             bpy.ops.mesh.primitive_cube_add(size=cfg.BASE_SIZE, enter_editmode=False, align='WORLD', 
                                     location=run_start_location, scale=(1, 1, 1))
-            cube = bpy.context.selected_objects[0]
+            cube = bpy.context.active_object
             cube.name = "run start"
             bu.assign_material(cube,"mat_start")
             bu.scale_object((cfg.CUBE_SIZE*2, cfg.CUBE_SIZE*2, cfg.CUBE_SIZE*8))
@@ -155,7 +155,6 @@ def create_scene_from_processed_trace(runs, analysis_data):
             type = instruction.type
 
             current_location = ((pc-global_start)*cfg.INSTRUCTION_DISTANCE, run_id*cfg.RUN_DISTANCE, depth*cfg.DEPTH_MULT)
-            obj = bpy.context.selected_objects[0] #declare for this scope
             new_obj_name = f"{pc} {run_id} {depth} {opcode.name}" #{step} 
 
             curve_obj = None #used by some types of instructions (Branch, Jump)

@@ -5,6 +5,19 @@ import math
 import visualization.Blender.config as cfg
 from visualization.Enums.riscv_enum import Symbolic_Beh
 
+
+def _material_output_node(nodes):
+    for node in nodes:
+        if node.bl_idname == "ShaderNodeOutputMaterial":
+            return node
+    return nodes.new("ShaderNodeOutputMaterial")
+
+
+def _remove_node_if_present(nodes, node_name):
+    node = nodes.get(node_name)
+    if node is not None:
+        nodes.remove(node)
+
 ## -- Blender related functions -- ##
 def delete_material(name):
     """delete material by name"""
@@ -66,8 +79,7 @@ def create_ground_material(material_name):
     node_math_gt.inputs[1].default_value = cfg.INSTRUCTION_DISTANCE * 4 #half of wrap
     node_location+=node_distance
 
-    nodes.new("ShaderNodeMixRGB")
-    node_rgb = nodes["Mix"]
+    node_rgb = nodes.new("ShaderNodeMixRGB")
     node_rgb.location = (node_location, 0)
     node_rgb.inputs[1].default_value = (0.15,0.15,0.15,1)
     node_rgb.inputs[2].default_value = (0.4,0.4,0.4,1)
@@ -86,10 +98,10 @@ def create_ground_material(material_name):
 
 
 
-    out = nodes.get('Material Output') 
-    nodes.remove(nodes.get('Principled BSDF'))
+    out = _material_output_node(nodes)
+    _remove_node_if_present(nodes, 'Principled BSDF')
 
-    #link nodes
+    link nodes
     links.new(node_tex_coord.outputs[3], node_mapping.inputs[0])
     links.new(node_mapping.outputs[0], node_separatexyz.inputs[0])
     links.new(node_separatexyz.outputs[0], node_math1.inputs[0])
@@ -141,8 +153,7 @@ def __create_material_instruction():
     node_Obj_info.location = (node_location, 0)
     node_location+=node_distance
 
-
-    node_separatergb = nodes.new("ShaderNodeSeparateRGB")
+    node_separatergb = nodes.new("ShaderNodeSeparateColor")
     #node_separatergb = nodes["Separate RGB"]
     node_separatergb.location = (node_location, 0)
     node_location+=node_distance
@@ -243,8 +254,8 @@ def __create_material_instruction():
     node_bsdf.location = (node_location, node_y)
     node_location+=node_distance
 
-    links.new(node_mix_sym.outputs[0], node_bsdf.inputs['Emission'])
-    links.new(node_math_green.outputs[0], node_bsdf.inputs['Emission Strength'])
+    links.new(node_mix_sym.outputs[0], node_bsdf.inputs[27])
+    links.new(node_math_green.outputs[0], node_bsdf.inputs[28])
 
 
 
@@ -304,8 +315,8 @@ def __create_material_instruction():
 
 
 
-    out = nodes.get('Material Output') 
-    nodes.remove(nodes.get('Principled BSDF'))
+    out = _material_output_node(nodes)
+    _remove_node_if_present(nodes, 'Principled BSDF')
 
     links.new(node_mixshader.outputs[0], out.inputs[0])
 
@@ -344,7 +355,7 @@ def create_material_arith(type="INSTRUCTION"):
     node_location+=node_distance
 
 
-    node_separatergb = nodes.new("ShaderNodeSeparateRGB")
+    node_separatergb = nodes.new("ShaderNodeSeparateColor")
     #node_separatergb = nodes["Separate RGB"]
     node_separatergb.location = (node_location, 0)
     node_location+=node_distance
@@ -394,8 +405,8 @@ def create_material_arith(type="INSTRUCTION"):
     node_bsdf2.inputs[0].default_value = cfg.COLOR_ARITH_MAIN
     node_location+=node_distance
 
-    links.new(node_saturation_active.outputs[0], node_bsdf2.inputs['Emission'])
-    links.new(node_math_active_strength.outputs[0], node_bsdf2.inputs['Emission Strength'])
+    links.new(node_saturation_active.outputs[0], node_bsdf2.inputs[27]) #emission color (was renamed?)
+    links.new(node_math_active_strength.outputs[0], node_bsdf2.inputs[28]) #emission strength (was renamed?)
 
 
 
@@ -461,8 +472,8 @@ def create_material_arith(type="INSTRUCTION"):
     node_bsdf.inputs[0].default_value = cfg.COLOR_ARITH_SUB
     node_location+=node_distance
 
-    links.new(node_ramp_sym.outputs[0], node_bsdf.inputs['Emission'])
-    links.new(node_math_green.outputs[0], node_bsdf.inputs['Emission Strength'])
+    links.new(node_ramp_sym.outputs[0], node_bsdf.inputs[27])
+    links.new(node_math_green.outputs[0], node_bsdf.inputs[28])
 
 
 
@@ -561,8 +572,8 @@ def create_material_arith(type="INSTRUCTION"):
 
 
 
-    out = nodes.get('Material Output') 
-    nodes.remove(nodes.get('Principled BSDF'))
+    out = _material_output_node(nodes)
+    _remove_node_if_present(nodes, 'Principled BSDF')
 
     links.new(node_mixshader.outputs[0], out.inputs[0])
 
@@ -594,7 +605,7 @@ def create_material_ecall():
     node_location+=node_distance
 
 
-    node_separatergb = nodes.new("ShaderNodeSeparateRGB")
+    node_separatergb = nodes.new("ShaderNodeSeparateColor")
     node_separatergb.location = (node_location, node_y)
     node_location+=node_distance
 
@@ -693,15 +704,15 @@ def create_material_ecall():
     node_bsdf = nodes.new("ShaderNodeBsdfPrincipled")
     node_bsdf.name = "Main Principled"
     node_bsdf.location = (node_location, node_y)
-    node_bsdf.inputs['Emission'].default_value = cfg.COLOR_ACTIVE
+    node_bsdf.inputs[27].default_value = cfg.COLOR_ACTIVE
     node_location+=node_distance
 
     links.new(node_mix2.outputs[0], node_bsdf.inputs[0])
-    links.new(node_math_active_fac.outputs[0], node_bsdf.inputs['Emission Strength'])
+    links.new(node_math_active_fac.outputs[0], node_bsdf.inputs[28])
 
 
-    out = nodes.get('Material Output') 
-    nodes.remove(nodes.get('Principled BSDF'))
+    out = _material_output_node(nodes)
+    _remove_node_if_present(nodes, 'Principled BSDF')
 
     links.new(node_bsdf.outputs[0], out.inputs[0])
 
@@ -733,7 +744,8 @@ def create_material_jump():
     node_location+=node_distance
 
 
-    node_separatergb = nodes.new("ShaderNodeSeparateRGB")
+
+    node_separatergb = nodes.new("ShaderNodeSeparateColor")
     node_separatergb.location = (node_location, node_y)
     node_location+=node_distance
 
@@ -822,15 +834,15 @@ def create_material_jump():
     node_bsdf = nodes.new("ShaderNodeBsdfPrincipled")
     node_bsdf.name = "Main Principled"
     node_bsdf.location = (node_location, node_y)
-    node_bsdf.inputs['Emission'].default_value = cfg.COLOR_ACTIVE
+    node_bsdf.inputs[27].default_value = cfg.COLOR_ACTIVE
     node_location+=node_distance
 
     links.new(node_mix1.outputs[0], node_bsdf.inputs[0])
-    links.new(node_math_active_fac.outputs[0], node_bsdf.inputs['Emission Strength'])
+    links.new(node_math_active_fac.outputs[0], node_bsdf.inputs[28])
 
 
-    out = nodes.get('Material Output') 
-    nodes.remove(nodes.get('Principled BSDF'))
+    out = _material_output_node(nodes)
+    _remove_node_if_present(nodes, 'Principled BSDF')
 
     links.new(node_bsdf.outputs[0], out.inputs[0])
 
@@ -859,8 +871,8 @@ def create_material_text():
     node_color1.inputs["Color"].default_value = cfg.COLOR_TEXT
     node_location+=node_distance
 
-    out = nodes.get('Material Output') 
-    nodes.remove(nodes.get('Principled BSDF'))
+    out = _material_output_node(nodes)
+    _remove_node_if_present(nodes, 'Principled BSDF')
 
     links.new(node_color1.outputs[0], out.inputs[0])
 
@@ -888,7 +900,7 @@ def create_ground(run:int, global_start:int, min_pc:int, max_pc:int):
                                     use_proportional_connected=False, use_proportional_projected=False)
     bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
 
-    ground = bpy.context.selected_objects[0]
+    ground = bpy.context.active_object
     mat = bpy.data.materials.get("pc_ground")
     if mat is None:
         # create material
@@ -965,13 +977,13 @@ def assign_material(obj,mat_name:str):
             nodes = mat.node_tree.nodes
             links = mat.node_tree.links
 
-            nodes.new("ShaderNodeMixRGB")
-            node_rgb = nodes["Mix"]
+            
+            node_rgb = nodes.new("ShaderNodeMixRGB")
             node_rgb.location = (0, 0)
             node_rgb.inputs[1].default_value = (1,0,1,1)
             node_rgb.inputs[2].default_value = (1,0,1,1)
 
-            out = nodes.get('Material Output') 
+            out = _material_output_node(nodes)
             links.new(node_rgb.outputs[0], out.inputs[0])
         else:
             pass
@@ -1038,7 +1050,7 @@ def create_text(location:tuple, name:str, text:str, scale:float, material):
     bpy.ops.object.text_add(enter_editmode=False, align='WORLD', 
                             location=(location), 
                             rotation=(0, 0, math.radians(90)), scale=(1, 1, 1))
-    text_obj = bpy.context.selected_objects[0]
+    text_obj = bpy.context.active_object
     text_obj.name = name
     text_obj.data.body = text
     scale_object((cfg.TEXT_SCALE*scale,cfg.TEXT_SCALE*scale,cfg.TEXT_SCALE*scale),'INDIVIDUAL_ORIGINS')

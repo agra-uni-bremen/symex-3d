@@ -24,7 +24,7 @@ The trace visualization tool consists of two parts:
 The module requires Python version 3.1 or newer to be installed
 
 ### Blender 3D Visualization Addon
-The visualization is implemented as an addon for Blender and is compatible with versions 2.9.2 - 3.2.1 (and likely future versions)  
+The visualization is implemented as an addon for Blender and is compatible with Blender 5.1.2 and newer.  
 
 Blender is available [here][Blender org].  
 
