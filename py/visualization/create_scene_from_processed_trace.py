@@ -13,7 +13,7 @@ from datetime import datetime, timedelta
 from visualization.Enums.riscv_enum import Opcode, Reg, Symbolic_Beh, Opcode_type
 from visualization.Data.instructions import Analysis_Data, Run, Instruction, Arith_Instruction, Jump, Branch, LoadStore, CSR
 from visualization.Data.blocks import CFBlock
-from visualization.Data.xml_parser import parse_ptrace_xml, parse_analysis_xml
+from visualization.Data.xml_parser import parse_ptrace_xml, parse_analysis_xml, is_simplified_ptrace
 
 from visualization.utils.utils import open_file, read_xml, terminal_colors
 import visualization.Blender.blender_utils as bu 
@@ -66,7 +66,7 @@ def create_control_flow_blocks(blocks_xml_root, code_string, global_start):
 
 
 
-def create_scene_from_processed_trace(runs, analysis_data):
+def create_scene_from_processed_trace(runs, analysis_data, simplified=False):
     #global cfg.GROUND_MAT_WAS_CREATED #TODO check behavior
 
     global_start = analysis_data.global_start
@@ -174,10 +174,11 @@ def create_scene_from_processed_trace(runs, analysis_data):
                 link_address = instruction.link_address
 
                 obj, curve_obj = bd.create_jump(new_obj_name, current_location, jump_target, pc, depth, global_start)
-                    
-                bu.set_keyframe(curve_obj, curve_obj.color,"color",0,0,0)
-                bu.set_keyframe(curve_obj, curve_obj.color,"color",1,0,0)
-                bu.set_keyframe(curve_obj, curve_obj.color,"color",2,0,0)
+
+                if not simplified:
+                    bu.set_keyframe(curve_obj, curve_obj.color,"color",0,0,0)
+                    bu.set_keyframe(curve_obj, curve_obj.color,"color",1,0,0)
+                    bu.set_keyframe(curve_obj, curve_obj.color,"color",2,0,0)
             elif(type == Opcode_type.Branch):
                 jump_target = instruction.target
                 branch_edge =  instruction.condition
@@ -185,7 +186,7 @@ def create_scene_from_processed_trace(runs, analysis_data):
                 reg_rs2 =  instruction.reg_rs2
 
                 obj, curve_obj = bd.create_branch(new_obj_name, current_location, jump_target, pc, depth, branch_edge, global_start)
-                if(branch_edge): # or curve_obj!=None
+                if(branch_edge) and not simplified: # or curve_obj!=None
                     bu.set_keyframe(curve_obj, curve_obj.color, "color", ind=0, frame_p=0, value=0)
                     bu.set_keyframe(curve_obj, curve_obj.color, "color", ind=1, frame_p=0, value=0)
                     bu.set_keyframe(curve_obj, curve_obj.color, "color", ind=2, frame_p=0, value=0)
@@ -198,8 +199,18 @@ def create_scene_from_processed_trace(runs, analysis_data):
             else:
                 print(f"{terminal_colors.FAIL}[ERROR]: Unknown opcode{terminal_colors.ENDC}")
 
-            #set keyframes for active steps
-            if(type==Opcode_type.Branch):
+            #set keyframes for active steps (or static colors in simplified mode)
+            if simplified:
+                # Overview mode: no animation — encode symbolic behavior and branch outcome
+                # as static object colors so the scene stays lightweight.
+                max_sym = max((s[1].value for s in instruction.steps_active), default=0)
+                obj.color[1] = max_sym / 5.0
+                if type == Opcode_type.Branch and instruction.steps_active:
+                    _, _, edge = instruction.steps_active[-1]
+                    obj.color[2] = float(edge)
+                if curve_obj is not None:
+                    curve_obj.color[1] = 0.1  # keep curves faintly visible
+            elif(type==Opcode_type.Branch):
                 #set default value for frame 0
                 #set initial branch taken color to unknown (0.5)
                 bu.set_keyframe(obj, obj.color, "color", ind=0, frame_p=0, value=0)
@@ -285,15 +296,16 @@ def create_scene_from_processed_trace(runs, analysis_data):
                         bu.set_keyframe(obj, obj.rotation_euler,"rotation_euler",1,frame_p=(step+1)*cfg.FRAME_STEP,value=0)
                         bu.keyframe_preserve(obj,"rotation_euler",2,frame_p=step*cfg.FRAME_STEP)
                         bu.set_keyframe(obj, obj.rotation_euler,"rotation_euler",2,frame_p=(step+1)*cfg.FRAME_STEP,value=0)
-                for step,sym_beh in instruction.steps_active:
-                    #for each active step set marker and camera location
-                    bu.set_keyframe(cam, cam.location, "location", ind=0, frame_p=step*cfg.FRAME_STEP, value=(pc-global_start)*cfg.INSTRUCTION_DISTANCE)
-                    bu.set_keyframe(cam, cam.location, "location", ind=1, frame_p=step*cfg.FRAME_STEP, value=run_id*cfg.RUN_DISTANCE)
-                    bu.set_keyframe(cam, cam.location, "location", ind=2, frame_p=step*cfg.FRAME_STEP, value=cfg.CAM_DISTANCE+instruction.depth*cfg.INSTRUCTION_DISTANCE)
+                if not simplified:
+                    for step,sym_beh in instruction.steps_active:
+                        #for each active step set marker and camera location
+                        bu.set_keyframe(cam, cam.location, "location", ind=0, frame_p=step*cfg.FRAME_STEP, value=(pc-global_start)*cfg.INSTRUCTION_DISTANCE)
+                        bu.set_keyframe(cam, cam.location, "location", ind=1, frame_p=step*cfg.FRAME_STEP, value=run_id*cfg.RUN_DISTANCE)
+                        bu.set_keyframe(cam, cam.location, "location", ind=2, frame_p=step*cfg.FRAME_STEP, value=cfg.CAM_DISTANCE+instruction.depth*cfg.INSTRUCTION_DISTANCE)
 
-                    bu.set_keyframe(active_marker, active_marker.location, "location", ind=0, frame_p=step*cfg.FRAME_STEP, value=(pc-global_start)*cfg.INSTRUCTION_DISTANCE)
-                    bu.set_keyframe(active_marker, active_marker.location, "location", ind=1, frame_p=step*cfg.FRAME_STEP, value=run_id*cfg.RUN_DISTANCE)
-                    bu.set_keyframe(active_marker, active_marker.location, "location", ind=2, frame_p=step*cfg.FRAME_STEP, value=cfg.CUBE_SIZE*2 * (depth + 1))
+                        bu.set_keyframe(active_marker, active_marker.location, "location", ind=0, frame_p=step*cfg.FRAME_STEP, value=(pc-global_start)*cfg.INSTRUCTION_DISTANCE)
+                        bu.set_keyframe(active_marker, active_marker.location, "location", ind=1, frame_p=step*cfg.FRAME_STEP, value=run_id*cfg.RUN_DISTANCE)
+                        bu.set_keyframe(active_marker, active_marker.location, "location", ind=2, frame_p=step*cfg.FRAME_STEP, value=cfg.CUBE_SIZE*2 * (depth + 1))
 
         #print(f"Creating memory blocks for run {run_id}")
         """memory_list_current_run = memory_list_per_run[run_count-1]
@@ -305,7 +317,8 @@ def create_scene_from_processed_trace(runs, analysis_data):
                             0-z_offset)"""
             # bd.create_memory(f"Memory {hex(address)}", mem_location) #TODO implement memory visualization
         #processed all instruction blocks    
-        bu.set_keyframe(active_marker, active_marker.rotation_euler,"rotation_euler",2,frame_p=num_steps*cfg.FRAME_STEP,value=0.3 * num_steps)
+        if not simplified:
+            bu.set_keyframe(active_marker, active_marker.rotation_euler,"rotation_euler",2,frame_p=num_steps*cfg.FRAME_STEP,value=0.3 * num_steps)
         
         time_delta_current_run = datetime.now()-time_run_start
         print(f'{terminal_colors.OKGREEN}[RUN {run_id} completed]{terminal_colors.ENDC} (Duration: {time_delta_current_run})')
@@ -360,10 +373,14 @@ def main(path_dir_ptrace, path_dir_blocks, path_dir_source_code, max_steps, cube
 
     tree,root = read_xml(path_dir_ptrace)
 
+    simplified = is_simplified_ptrace(root)
+    if simplified:
+        print("[INFO] Simplified/overview ptrace detected — building static overview scene")
+
     run_list = parse_ptrace_xml(root)
     analysis_data = parse_analysis_xml(root)
 
-    create_scene_from_processed_trace(run_list, analysis_data)
+    create_scene_from_processed_trace(run_list, analysis_data, simplified=simplified)
     if(len(path_dir_blocks)>0):
         tree_blocks, root_blocks = read_xml(path_dir_blocks)
 

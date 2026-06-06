@@ -39,10 +39,16 @@ if __name__ == "__main__":
                     help='Path to ELF binary')
     parser.add_argument('--source', type=str, required=False, 
                     help='Path to source file')
+    parser.add_argument('--simplified', action='store_true',
+                        help='Create a simplified overview ptrace (reduced depth/loop keyframes)')
+    parser.add_argument('--suffix', type=str, required=False, default='',
+                        help='Optional suffix for output ptrace file name (default: _simplified when --simplified is used)')
 
     args = parser.parse_args()
 
-    num_runs = process_trace_file(args.trace, args.output)
+    num_runs = process_trace_file(args.trace, args.output,
+                                  simplified=args.simplified,
+                                  output_name_suffix=args.suffix)
     if(args.elf and args.source):
         print("ELF and Source path specified. Creating optional .blk file.")
         process_DWARF(args.elf, args.source, args.trace, args.output, num_runs)

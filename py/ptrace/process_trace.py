@@ -345,7 +345,7 @@ def process_instruction(run, instr, pc, call_stack, reg_rs1, reg_rs2, reg_rd, im
         print("ERROR: Unknown opcode")
     return current_instruction
 
-def process_trace(root, analysis_data):
+def process_trace(root, analysis_data, simplified=False):
 
     run_start = analysis_data.run_start
     potential_child_branches = analysis_data.potential_child_branches
@@ -388,6 +388,7 @@ def process_trace(root, analysis_data):
             current_run.end = pc_end
             
             step_counter = -1
+            simplified_step_counter = 0
             reached_start = False
 
             #print(f"Number of memory accesses: {len(memory_list)}")
@@ -435,7 +436,12 @@ def process_trace(root, analysis_data):
                 current_instruction = None
                 object_already_exists = False
                 for instruction in current_run.instruction_list:
-                    if(instruction.depth==len(call_stack) and instruction.pc==pc):
+                    if(simplified):
+                        if(instruction.pc==pc):
+                            object_already_exists = True
+                            current_instruction = instruction
+                            break
+                    elif(instruction.depth==len(call_stack) and instruction.pc==pc):
                         object_already_exists = True
                         current_instruction = instruction
                         #print(f"instruction {instruction} already exists")
@@ -453,9 +459,24 @@ def process_trace(root, analysis_data):
 
                 if(not object_already_exists):
                     current_instruction = process_instruction(run, instr, pc, call_stack, reg_rs1, reg_rs2, reg_rd, imm)
+                    if(simplified):
+                        current_instruction.depth = 0
                 if(current_instruction==None):
                     print("ERROR: instruction block wasn't created") #should be unreachable if all are implemented
-                
+
+                if(simplified):
+                    if(len(current_instruction.steps_active)==0):
+                        step = simplified_step_counter
+                        if(instr_data.tag == "branch"):
+                            branch_edge = int(instr_data.attrib.get("cond"))
+                            current_instruction.add_active_step(step, symbolic_beh, branch_edge)
+                        else:
+                            current_instruction.add_active_step(step, symbolic_beh)
+                        simplified_step_counter += 1
+                    if(not object_already_exists):
+                        current_run.instruction_list.append(current_instruction)
+                    continue
+
                 step_attr = instr.attrib
                 step_str = step_attr.get('step')
                 step = int(step_str)
@@ -474,12 +495,12 @@ def process_trace(root, analysis_data):
                 print(f"{terminal_colors.FAIL}[ERROR] could not find start for child run [{run-1}] and parent [{parent_id}]{terminal_colors.ENDC}")
             print("      -- Done --\n")
             #Done processing this run
-            current_run.num_steps = step_counter
+            current_run.num_steps = simplified_step_counter if simplified else step_counter
             run_list.append(current_run)
         #else: not a symex run entry
     return run_list
 
-def process_trace_file(input_path, output_path):
+def process_trace_file(input_path, output_path, simplified=False, output_name_suffix=""):
     while(input_path==""):
         print(f"{terminal_colors.FAIL}[ERROR] empty input path{terminal_colors.ENDC}")
         input_path = input("Specify new path to trace:")
@@ -489,10 +510,12 @@ def process_trace_file(input_path, output_path):
     path, file = os.path.split(input_path) #input_path.split("/")[-1].split(".")[0]
     executable_name = file.split(".")[0]
     print(f"{terminal_colors.HEADER}[Start processing trace {executable_name}]{terminal_colors.ENDC}")
+    if(simplified):
+        print(f"{terminal_colors.OKBLUE}[INFO] Simplified mode enabled: generating overview ptrace{terminal_colors.ENDC}")
 
     analysis_results = analyse_trace(root)
     print(f"{terminal_colors.OKGREEN}[Trace analysis complete]{terminal_colors.ENDC}")
-    ptrace = process_trace(root, analysis_results)
+    ptrace = process_trace(root, analysis_results, simplified=simplified)
     print(f"{terminal_colors.OKGREEN}[Trace processed]{terminal_colors.ENDC}")
 
 
@@ -513,7 +536,8 @@ def process_trace_file(input_path, output_path):
 
     ptrace_xml = '<?xml version="1.0" encoding="UTF-8"?>'
     ptrace_version = "5.0" if len(analysis_results.branch_solver_info) > 0 else "4.0"
-    ptrace_xml += f"<data ptrace_version=\"{ptrace_version}\">\n"
+    simplified_attr = ' simplified="true"' if simplified else ''
+    ptrace_xml += f"<data ptrace_version=\"{ptrace_version}\"{simplified_attr}>\n"
 
     ptrace_xml += f'<runs name="{executable_name}">\n' #TODO add check for platform to handle backslash types
     for run in ptrace:
@@ -533,7 +557,10 @@ def process_trace_file(input_path, output_path):
     print(list(enumerate(analysis_results.run_start)))
     #print(analysis_results.potential_child_branches)
 
-    save_file_name = f"{output_path}/{executable_name}.ptrace"
+    if(output_name_suffix == "" and simplified):
+        output_name_suffix = "_simplified"
+
+    save_file_name = f"{output_path}/{executable_name}{output_name_suffix}.ptrace"
     if(os.path.isfile(save_file_name)):
         if(confirm(f"PTrace file [{save_file_name}] already exists. Overwrite? {terminal_colors.OKGREEN}[y/yes]{terminal_colors.ENDC} ")):
             save_file_text(ptrace_xml, save_file_name, True)

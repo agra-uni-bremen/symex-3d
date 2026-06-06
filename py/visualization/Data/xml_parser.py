@@ -8,6 +8,13 @@ from visualization.Data.blocks import CFBlock
 
 from visualization.utils.utils import open_file, read_xml
 from visualization.Data.instructions import Link_Data
+
+
+def is_simplified_ptrace(root):
+    """Return True if the ptrace was generated in simplified/overview mode."""
+    return root.attrib.get('simplified', 'false').lower() == 'true'
+
+
 def parse_ptrace_xml(root):
     """ Takes a runs xml root node as input and returns a list of Run objects
     """

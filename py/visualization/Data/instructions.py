@@ -240,12 +240,12 @@ class Analysis_Data:
                 if(i%4==0):
                     xml_string +="\n"
             xml_string +='</run>\n'
-
-            xml_string += '<branch-info>\n'
-            for branch in self.branch_solver_info:
-                xml_string += f'  {branch.to_xml()}\n'
-            xml_string += '</branch-info>\n'
         xml_string += '</memory_per_run>\n'
+
+        xml_string += '<branch-info>\n'
+        for branch in self.branch_solver_info:
+            xml_string += f'  {branch.to_xml()}\n'
+        xml_string += '</branch-info>\n'
 
         xml_string += f'</Analysis>\n'
 
