@@ -1,6 +1,6 @@
 from elftools.elf.elffile import ELFFile
 
-from elftools.common.py3compat import maxint, bytes2str
+from elftools.common.utils import bytes2str
 from elftools.dwarf.descriptions import describe_form_class
 
 import xml.etree.ElementTree as ET

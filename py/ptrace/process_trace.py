@@ -7,7 +7,7 @@ import xml.etree.ElementTree as ET
 
 from enum import Enum
 from visualization.Enums.riscv_enum import Opcode, Opcode_type, Reg, Symbolic_Beh
-from visualization.Data.instructions import Run, Instruction, Arith_Instruction, Jump, Branch, LoadStore, CSR, Analysis_Data, Link_Node, Link_Data
+from visualization.Data.instructions import Run, Instruction, Arith_Instruction, Jump, Branch, LoadStore, CSR, Analysis_Data, Link_Node, Link_Data, Solver_Branch_Info
 from visualization.Data.blocks import CFBlock
 from visualization.utils.utils import open_file, save_file_binary, save_file_text, read_xml, confirm, terminal_colors
 
@@ -112,6 +112,7 @@ def analyse_trace(root):
     
     memory_list = []
     memory_list_per_run = []
+    branch_solver_info = []
 
     global_start = int(root[0][0][0].attrib.get('pc'),16) #TODO handle different node types
     temp_memory_access_set = set()
@@ -180,6 +181,22 @@ def analyse_trace(root):
                 else:
                     print(f"{terminal_colors.FAIL}[ERROR] missing branch data for run {terminal_colors.OKCYAN}{r}{terminal_colors.ENDC}")
             print(run_start)
+        if(entry.tag=="branch-info"):
+            for branch in entry:
+                addr_hex = branch.attrib.get('addr')
+                if(addr_hex is None):
+                    continue
+                branch_solver_info.append(
+                    Solver_Branch_Info(
+                        addr=int(addr_hex, 16),
+                        num_queries=int(branch.attrib.get('num_queries', '0')),
+                        seconds=float(branch.attrib.get('seconds', '0.0')),
+                        constraints=int(branch.attrib.get('constraints', '0')),
+                        variables=int(branch.attrib.get('variables', '0')),
+                        nodes=int(branch.attrib.get('nodes', '0')),
+                        depth=int(branch.attrib.get('depth', '0')),
+                    )
+                )
     memory_list = list(temp_memory_access_set)
     memory_list.sort()
     print(f"{terminal_colors.OKCYAN}Accessed Memory[{total_accesses} -> {len(temp_memory_access_set)}]: {len(memory_list)}{terminal_colors.ENDC}")
@@ -206,6 +223,7 @@ def analyse_trace(root):
     analysis_results = Analysis_Data(global_start, min_pc, max_pc, num_runs, timeline_forks, run_start, 
                                         potential_child_branches, memory_list, memory_list_per_run)
     analysis_results.discovered_run_links=discovered_run_links
+    analysis_results.branch_solver_info = branch_solver_info
     return analysis_results
 
 def determine_symbolic_behavior(instr_data, reg_rs1, reg_rs2, reg_rd, 
@@ -494,7 +512,8 @@ def process_trace_file(input_path, output_path):
 
 
     ptrace_xml = '<?xml version="1.0" encoding="UTF-8"?>'
-    ptrace_xml += "<data ptrace_version=\"4.0\">\n"
+    ptrace_version = "5.0" if len(analysis_results.branch_solver_info) > 0 else "4.0"
+    ptrace_xml += f"<data ptrace_version=\"{ptrace_version}\">\n"
 
     ptrace_xml += f'<runs name="{executable_name}">\n' #TODO add check for platform to handle backslash types
     for run in ptrace:

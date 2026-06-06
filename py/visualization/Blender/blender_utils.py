@@ -101,7 +101,6 @@ def create_ground_material(material_name):
     out = _material_output_node(nodes)
     _remove_node_if_present(nodes, 'Principled BSDF')
 
-    link nodes
     links.new(node_tex_coord.outputs[3], node_mapping.inputs[0])
     links.new(node_mapping.outputs[0], node_separatexyz.inputs[0])
     links.new(node_separatexyz.outputs[0], node_math1.inputs[0])

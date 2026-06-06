@@ -9,6 +9,23 @@ class Link_Data:
       self.pc = pc
       self.step = step
 
+class Solver_Branch_Info:
+    def __init__(self, addr, num_queries, seconds, constraints, variables, nodes, depth):
+        self.addr = addr
+        self.num_queries = num_queries
+        self.seconds = seconds
+        self.constraints = constraints
+        self.variables = variables
+        self.nodes = nodes
+        self.depth = depth
+
+    def to_xml(self):
+        return (
+            f'<branch addr="{hex(self.addr)}" num_queries="{self.num_queries}" '
+            f'seconds="{self.seconds}" constraints="{self.constraints}" '
+            f'variables="{self.variables}" nodes="{self.nodes}" depth="{self.depth}"></branch>'
+        )
+
 class Link_Node:
     """Binary tree node holding a hash and a weight"""
     def __init__(self, data, run_id, parent):
@@ -172,6 +189,7 @@ class Analysis_Data:
         self.run_start = run_start
         self.potential_child_branches = potential_child_branches
         self.memory_list = memory_list
+        self.branch_solver_info = []
         self.memory_list_per_run = memory_list_per_run
 
     def to_xml(self):
@@ -222,6 +240,11 @@ class Analysis_Data:
                 if(i%4==0):
                     xml_string +="\n"
             xml_string +='</run>\n'
+
+            xml_string += '<branch-info>\n'
+            for branch in self.branch_solver_info:
+                xml_string += f'  {branch.to_xml()}\n'
+            xml_string += '</branch-info>\n'
         xml_string += '</memory_per_run>\n'
 
         xml_string += f'</Analysis>\n'

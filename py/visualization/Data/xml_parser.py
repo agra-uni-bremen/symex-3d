@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 from enum import Enum
 
 from visualization.Enums.riscv_enum import Opcode, Reg, Symbolic_Beh, Opcode_type
-from visualization.Data.instructions import Analysis_Data, Run, Instruction, Arith_Instruction, Jump, Branch, LoadStore, CSR
+from visualization.Data.instructions import Analysis_Data, Run, Instruction, Arith_Instruction, Jump, Branch, LoadStore, CSR, Solver_Branch_Info
 from visualization.Data.blocks import CFBlock
 
 from visualization.utils.utils import open_file, read_xml
@@ -119,8 +119,18 @@ def parse_analysis_xml(root):
     memory_list = []
 
     discovered_links = []
-    
-    for run in analysis[0]:
+    branch_solver_info = []
+
+    potential_children_node = analysis.find('potential_children')
+    discovered_links_node = analysis.find('discovered_links')
+    memory_node = analysis.find('memory')
+    memory_per_run_node = analysis.find('memory_per_run')
+    branch_info_node = analysis.find('branch-info')
+
+    if potential_children_node is None or discovered_links_node is None or memory_node is None or memory_per_run_node is None:
+        raise ValueError("Invalid analysis XML: missing one of potential_children/discovered_links/memory/memory_per_run")
+
+    for run in potential_children_node:
         r_parent = int(run.attrib.get('run_parent'))
         r_pc = int(run.attrib.get('run_start_pc'),16)
         r_step = int(run.attrib.get('run_start_step'))
@@ -134,7 +144,7 @@ def parse_analysis_xml(root):
             link_data = Link_Data(link_hash, link_pc, link_step)
             cr_potential_child_branches.append(link_data)
         potential_child_branches.append(cr_potential_child_branches)
-    for run in analysis[1]:
+    for run in discovered_links_node:
         dc_run_list = []
         for child in run:
             child_id = int(child.attrib.get('id'))
@@ -144,21 +154,44 @@ def parse_analysis_xml(root):
         discovered_links.append(dc_run_list)
 
     memory_list = []
-    for address in analysis[2]:
+    for address in memory_node:
         memory_list.append(int(address.attrib.get('value')))
     memory_list_per_run = []
     #print("Parsing analysis memory list per run")
-    for an_run in analysis[3]:
+    for an_run in memory_per_run_node:
         memory_list_current_run = []
         for per_run_address in an_run:
-            #print(f"per_run_address.tag {per_run_address.tag} {per_run_address.attrib.get('value')}")
-            memory_list_current_run.append(int(per_run_address.attrib.get('value')))
+            # print(f"per_run_address.tag {per_run_address.tag} {per_run_address.attrib.get('value')}")
+            value = per_run_address.attrib.get('value')
+            if value is not None:
+                memory_list_current_run.append(int(value))
+            else:
+                print(f"Warning: Missing 'value' attribute in memory_per_run for run {an_run.attrib.get('run_id')}")
+                print(f"per_run_address.tag {per_run_address.tag} {per_run_address.attrib.get('value')}")
         memory_list_per_run.append(memory_list_current_run)
     #print(f"mem list per run {memory_list_per_run}")
+
+    if branch_info_node is not None:
+        for branch in branch_info_node:
+            addr_hex = branch.attrib.get('addr')
+            if addr_hex is None:
+                continue
+            branch_solver_info.append(
+                Solver_Branch_Info(
+                    addr=int(addr_hex, 16),
+                    num_queries=int(branch.attrib.get('num_queries', '0')),
+                    seconds=float(branch.attrib.get('seconds', '0.0')),
+                    constraints=int(branch.attrib.get('constraints', '0')),
+                    variables=int(branch.attrib.get('variables', '0')),
+                    nodes=int(branch.attrib.get('nodes', '0')),
+                    depth=int(branch.attrib.get('depth', '0')),
+                )
+            )
 
     analysis_data = Analysis_Data(global_start, min_pc, max_pc, num_runs, [0], run_start, 
                     potential_child_branches, memory_list, memory_list_per_run)
     analysis_data.discovered_run_links = discovered_links
+    analysis_data.branch_solver_info = branch_solver_info
     return analysis_data
 
 
